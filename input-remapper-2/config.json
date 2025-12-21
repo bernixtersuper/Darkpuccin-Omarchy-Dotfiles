@@ -1,0 +1,7 @@
+{
+    "version": "2.2.0",
+    "autoload": {
+        "Beken 2.4G Wireless Device": "Study",
+        "Compx 2.4G Wireless Receiver": "VIM_GLOBAL_KEYBINDS"
+    }
+}
