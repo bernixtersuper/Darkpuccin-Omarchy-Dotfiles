@@ -1,0 +1,10 @@
+{
+  "showRibbon": false,
+  "cssTheme": "Omarchy",
+  "interfaceFontFamily": "Monospace",
+  "baseFontSize": 27,
+  "baseFontSizeAction": true,
+  "textFontFamily": "monospace",
+  "showViewHeader": false,
+  "nativeMenus": false
+}
