@@ -1,0 +1,248 @@
+{
+  "main": {
+    "id": "4477d8da59aea362",
+    "type": "split",
+    "children": [
+      {
+        "id": "0acd8a0aab89ea0c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d0cefce5d4ab25b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "5c4f2d298549b297",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Personal/Viaje.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Viaje"
+            }
+          },
+          {
+            "id": "8d32eaba3de6bb66",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "To do.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "To do"
+            }
+          },
+          {
+            "id": "0eadf4b4bba9582f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "remember_zen.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "remember_zen"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fd7eb8d66a0e1cf7",
+    "type": "split",
+    "children": [
+      {
+        "id": "6b57d8f55d5de34f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e761d70b80f0681c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "920c9db802ebc98d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "35e71857229e0af5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "1a43bc7076192aa0",
+    "type": "split",
+    "children": [
+      {
+        "id": "fe0eb47d0981ae53",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "97220e78620a78aa",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Tasks_Finals.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Tasks_Finals"
+            }
+          },
+          {
+            "id": "427a111100da979c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Tasks_Finals.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Tasks_Finals"
+            }
+          },
+          {
+            "id": "b15d113ddb68a39e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "8e5012bec706ea2d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "OCASA.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of OCASA"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "5c4f2d298549b297",
+  "lastOpenFiles": [
+    "remember_zen.md",
+    "To do.md",
+    "Personal/Viaje.md",
+    "Untitled.md",
+    "OCASA.md",
+    "Personal/Itinerary - 2025-12-02T121455.108.pdf",
+    "Personal/Viaje_Japan.md",
+    "Tasks_Finals.md",
+    "Derecho_Final.md",
+    "Macro/Notas_Macro_Slides/Resumen_Macro.md",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213223558.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213223941.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251214121331.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251214140719.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213215511.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213215123.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213215020.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213214846.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213214819.png",
+    "Macro/Notas_Macro_Slides/Pasted image 20251213213749.png",
+    "Macro/Macro_3-11.md",
+    "Macro/Notas_Macro_Slides",
+    "Macro/Actividad_Final/Macro_Asincronicas_Presentacion_Final.md",
+    "Macro/Actividad_Final/Actividad_Final_Macro.md",
+    "Macro/Actividad_Final",
+    "Practicas_Expositivas/Practicas_Presentacion_Guion.md",
+    "Practicas_Expositivas/Practicas_Fuentes.md",
+    "GOBPN/Presentacion_GOBPN_Guion.md"
+  ]
+}
