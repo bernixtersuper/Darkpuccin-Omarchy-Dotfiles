@@ -9,8 +9,8 @@
   "modules-left": ["hyprland/workspaces","hyprland/window"],
   // "modules-left": ["hyprland/workspaces"],
 
-  // "modules-center": ["custom/clock", "custom/update", "custom/screenrecording-indicator"],
-  "modules-center": ["custom/clock",  "custom/screenrecording-indicator"],
+  // "modules-center": ["custom/clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
+  "modules-center": ["custom/clock",  "custom/voxtype", "custom/screenrecording-indicator"],
     
   "modules-right": [
     "mpris",
@@ -18,7 +18,7 @@
     "bluetooth",
     "pulseaudio",
     // "cpu",
-    // "network",
+    "network",
     "battery",
     "custom/brightness",
     "custom/brightness2"
@@ -28,16 +28,16 @@
     "format": "{icon}",
     "format-icons": {
       "default": "",
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十",
+      "1": "壱",
+      "2": "弐",
+      "3": "参",
+      "4": "肆",
+      "5": "伍",
+      "6": "陸",
+      "7": "漆",
+      "8": "捌",
+      "9": "玖",
+      "10": "拾",
       "active": "󱓻"
     },
     "persistent-workspaces": {
@@ -83,8 +83,8 @@
 
   "network": {
     "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format": "{icon}",
-    "format-wifi": "{icon}",
+    "format": " {icon}",
+    "format-wifi": " {icon}",
     "format-ethernet": "󰀂",
     "format-disconnected": "󰤮",
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
@@ -124,12 +124,13 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "omarchy-launch-or-focus-tui wiremix",
+    "on-click": "omarchy-launch-audio",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "",
     "format-icons": {
+      "headphone": "",
       "default": ["", "", ""]
     }
   },
@@ -150,6 +151,19 @@
     "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
     "signal": 8,
     "return-type": "json"
+  },
+  "custom/voxtype": {
+    "exec": "omarchy-voxtype-status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "idle": "",
+      "recording": "󰍬",
+      "transcribing": "󰔟"
+    },
+    "tooltip": true,
+    "on-click-right": "omarchy-voxtype-config",
+    "on-click": "omarchy-voxtype-model"
   },
   "tray": {
     "icon-size": 12,
