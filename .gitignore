@@ -1,0 +1,37 @@
+# Sensitive / private data
+.config/Signal/
+.config/mozilla/
+.config/chromium/
+.config/pulse/
+.config/dconf/
+.config/ibus/
+.config/hyprland-preview-share-picker/
+
+# Typora - exclude app cache/data, keep only user config and themes
+.config/Typora/*
+!.config/Typora/conf/
+!.config/Typora/conf/**
+!.config/Typora/themes/
+!.config/Typora/themes/**
+
+# Keyring (system passwords)
+.local/share/keyrings/
+
+# App data / caches (not config)
+.local/share/Steam/
+.local/share/recently-used.xbel
+.local/share/gvfs-metadata/
+.local/share/Trash/
+.local/share/vulkan/
+.local/share/zoxide/
+.local/share/flatpak/
+.local/share/applications/
+.local/share/nautilus/
+.local/share/org.localsend.localsend_app/
+.local/share/nvim/
+.local/share/omarchy/
+.local/share/sddm/
+.local/share/mise/
+.local/share/hyprland/
+.local/share/icons/
+.local/state/

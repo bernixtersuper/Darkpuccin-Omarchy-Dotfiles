@@ -1,0 +1,1 @@
+/home/berni/.config/omarchy/current/theme/neovim.lua
