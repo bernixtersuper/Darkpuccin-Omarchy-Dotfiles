@@ -1,0 +1,83 @@
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#000000"
+
+# Main text color
+theme[main_fg]="#ffffff"
+
+# Title color for boxes
+theme[title]="#ffffff"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#39c5bb"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#091414"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#39c5bb"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#1a3a3a"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#ffffff"
+
+# Background color of the percentage meters
+theme[meter_bg]="#091414"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#72efdd"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#39c5bb"
+theme[mem_box]="#72efdd"
+theme[net_box]="#0e7490"
+theme[proc_box]="#38bdf8"
+
+# Box divider line and small boxes line color
+theme[div_line]="#1a3a3a"
+
+# Temperature graph color (Green -> Yellow -> Red)
+theme[temp_start]="#72efdd"
+theme[temp_mid]="#f9a8d4"
+theme[temp_end]="#0e7490"
+
+# CPU graph colors (Mint -> Teal)
+theme[cpu_start]="#72efdd"
+theme[cpu_mid]="#38bdf8"
+theme[cpu_end]="#39c5bb"
+
+# Mem/Disk free meter (Teal -> Mint)
+theme[free_start]="#39c5bb"
+theme[free_mid]="#38bdf8"
+theme[free_end]="#72efdd"
+
+# Mem/Disk cached meter (Blue -> Mint)
+theme[cached_start]="#38bdf8"
+theme[cached_mid]="#72efdd"
+theme[cached_end]="#ffffff"
+
+# Mem/Disk available meter (Pink -> Deep Teal)
+theme[available_start]="#f9a8d4"
+theme[available_mid]="#0e7490"
+theme[available_end]="#0e7490"
+
+# Mem/Disk used meter (Mint -> Teal)
+theme[used_start]="#72efdd"
+theme[used_mid]="#38bdf8"
+theme[used_end]="#39c5bb"
+
+# Download graph colors (Pink -> Deep Teal)
+theme[download_start]="#f9a8d4"
+theme[download_mid]="#0e7490"
+theme[download_end]="#0e7490"
+
+# Upload graph colors (Mint -> Blue)
+theme[upload_start]="#72efdd"
+theme[upload_mid]="#38bdf8"
+theme[upload_end]="#38bdf8"
+
+# Process box color gradient for threads, mem and cpu usage (Blue -> Teal)
+theme[process_start]="#38bdf8"
+theme[process_mid]="#72efdd"
+theme[process_end]="#39c5bb"

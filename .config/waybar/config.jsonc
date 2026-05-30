@@ -1,209 +1,76 @@
 {
-  // "output": "DP-1",
-  "reload_style_on_change": true,
-  "layer": "bottom",
-  "position": "bottom",
-  "spacing": 0,
-  "height": 24,
-    // "modules-left": ["custom/omarchy", "hyprland/workspaces"],
-  "modules-left": ["hyprland/workspaces","hyprland/window"],
-  // "modules-left": ["hyprland/workspaces"],
-
-  // "modules-center": ["custom/clock", "custom/update", "custom/voxtype", "custom/screenrecording-indicator"],
-  "modules-center": ["custom/clock",  "custom/voxtype", "custom/screenrecording-indicator"],
-    
-  "modules-right": [
-    "mpris",
+	"include": [
+		"~/.config/waybar/modules/hypr/window.jsonc",
+		"~/.config/waybar/modules/hypr/workspaces.jsonc",
+		"~/.config/waybar/modules/custom/arch.jsonc",
+		"~/.config/waybar/modules/custom/browser.jsonc",
+		"~/.config/waybar/modules/custom/fileman.jsonc",
+		"~/.config/waybar/modules/custom/terminal.jsonc",
+		"~/.config/waybar/modules/custom/virtmanager.jsonc",
+		"~/.config/waybar/modules/custom/nvim.jsonc",
+		"~/.config/waybar/modules/custom/nowplaying.jsonc",
+		"~/.config/waybar/modules/custom/updates.jsonc",
+		"~/.config/waybar/modules/custom/launcher.jsonc",
+		"~/.config/waybar/modules/custom/spacers.jsonc",
+		"~/.config/waybar/modules/custom/system.jsonc",
+		"~/.config/waybar/modules/bluetooth.jsonc",
+		"~/.config/waybar/modules/custom/vpn.jsonc",
+		"~/.config/waybar/modules/pulseaudio.jsonc",
+		"~/.config/waybar/modules/backlight.jsonc",
+		"~/.config/waybar/modules/battery.jsonc",
+		"~/.config/waybar/modules/custom/clock.jsonc",
+		"~/.config/waybar/modules/custom/voxtype.jsonc",
+		"~/.config/waybar/modules/custom/screenrecording.jsonc",
+		"~/.config/waybar/modules/custom/idle.jsonc",
+		"~/.config/waybar/modules/custom/notifications.jsonc",
+		"~/.config/waybar/modules/network.jsonc",
+		"~/.config/waybar/modules/tray.jsonc"
+	],
+	"position": "bottom",
+	"height": 28,
+	"modules-left": [
+    // "custom/arch",
+		// "custom/system",
+		// "custom/launcher",
+		// "custom/browser",
+		// "custom/fileman",
+		// "custom/terminal",
+		// "custom/virtmanager",
+    "hyprland/workspaces",
+    "hyprland/window"
+	],
+	"modules-center": [
+		"custom/clock",
+		"custom/voxtype",
+		"custom/screenrecording-indicator",
+		"custom/idle-indicator",
+		"custom/notification-silencing-indicator"
+	],
+	"modules-right": [
     "group/tray-expander",
-    "bluetooth",
-    "pulseaudio",
-    // "cpu",
-    "network",
-    "battery",
-    "custom/brightness",
-    "custom/brightness2"
-  ],
-  "hyprland/workspaces": {
-    "on-click": "activate",
-    "format": "{icon}",
-    "format-icons": {
-      "default": "",
-      "1": "壱",
-      "2": "弐",
-      "3": "参",
-      "4": "肆",
-      "5": "伍",
-      "6": "陸",
-      "7": "漆",
-      "8": "捌",
-      "9": "玖",
-      "10": "拾",
-      "active": "󱓻"
-    },
-    "persistent-workspaces": {
-      "1": [],
-      "2": [],
-      "3": [],
-      "4": [],
-      "5": []
-    }
-  },
-  "custom/omarchy": {
-    "format": "<span font='omarchy'>\ue900</span>",
-    "on-click": "omarchy-menu",
-    "on-click-right": "xdg-terminal-exec",
-    "tooltip-format": "Omarchy Menu\n\nSuper + Alt + Space"
-  },
-  "custom/update": {
-    "format": "",
-    "exec": "omarchy-update-available",
-    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
-    "tooltip-format": "Omarchy update available",
-    "signal": 7,
-    "interval": 3600
-  },
-
-  "cpu": {
-    "interval": 5,
-    "format": "󰍛",
-    "on-click": "omarchy-launch-or-focus-tui btop"
-  },
-  /*
-  BERNII I changed the clock so it would display time and day of the month in japanese
-  */
-  "custom/clock": {
-  "exec": "date +\"($(date +%w | sed 's/0/日/;s/1/月/;s/2/火/;s/3/水/;s/4/木/;s/5/金/;s/6/土/')) %m月%d日 %H:%M:%S\"",
-  "interval": 1,
-  "format": "{}",
-  "format-alt": "Lock in",
-  "tooltip": false,
-  "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select",
-  "output": "DP-1"
-  },
-
-  "network": {
-    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
-    "format": " {icon}",
-    "format-wifi": " {icon}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
-    "spacing": 1,
-    "on-click": "omarchy-launch-wifi"
-  },
-  "battery": {
-    "format": "{capacity}% {icon}",
-    "format-discharging": "{icon}",
-    "format-charging": "{icon}",
-    "format-plugged": "",
-    "format-icons": {
-      "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
-      "default": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-    "format-full": "󰂅",
-    "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
-    "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
-    "interval": 5,
-    "on-click": "omarchy-menu power",
-    "states": {
-      "warning": 20,
-      "critical": 10
-    }
-  },
-  "bluetooth": {
-    "format": "",
-    "format-disabled": "󰂲",
-    "format-off": "󰂲",
-    "format-connected": "󰂱",
-    "format-no-controller": "",
-    "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "omarchy-launch-bluetooth"
-  },
-  "pulseaudio": {
-    "format": "{icon}",
-    "on-click": "omarchy-launch-audio",
-    "on-click-right": "pamixer -t",
-    "tooltip-format": "Playing at {volume}%",
-    "scroll-step": 5,
-    "format-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "default": ["", "", ""]
-    }
-  },
-  "group/tray-expander": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 600,
-      "children-class": "tray-group-item"
-    },
-    "modules": ["custom/expand-icon", "tray"]
-  },
-  "custom/expand-icon": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/screenrecording-indicator": {
-    "on-click": "omarchy-cmd-screenrecord",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
-    "signal": 8,
-    "return-type": "json"
-  },
-  "custom/voxtype": {
-    "exec": "omarchy-voxtype-status",
-    "return-type": "json",
-    "format": "{icon}",
-    "format-icons": {
-      "idle": "",
-      "recording": "󰍬",
-      "transcribing": "󰔟"
-    },
-    "tooltip": true,
-    "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model"
-  },
-  "tray": {
-    "icon-size": 12,
-    "spacing": 17
-  },
-  "custom/brightness": {
-    "format": "  {text}% ",
-    "signal": 1,
-    "exec": "~/.config/waybar/brightness-control.sh get",
-    "on-scroll-up": "~/.config/waybar/brightness-control.sh up",
-    "on-scroll-down": "~/.config/waybar/brightness-control.sh down",
-    "on-click": "~/.config/waybar/brightness-control.sh left_click",
-    "on-click-right": "~/.config/waybar/brightness-control.sh right_click",
-    "tooltip": false
-  },
-  "custom/brightness2": {
-    "format": " {text}%",
-    "signal": 1,
-    "exec": "~/.config/waybar/brightness-control2.sh get",
-    "on-scroll-up": "~/.config/waybar/brightness-control2.sh up",
-    "on-scroll-down": "~/.config/waybar/brightness-control2.sh down",
-    "on-click": "~/.config/waybar/brightness-control2.sh left_click",
-    "on-click-right": "~/.config/waybar/brightness-control2.sh right_click",
-    "tooltip": false
-  },
-  "hyprland/window": {  
-  // "format": "{}"   // <--- these is the default value  
-  "format": "<span font='9' rise='-4444'> {}</span>"  
-  },
-  "mpris": {
-    "format": "    {player_icon} {artist} - {title}   ",
-    "max-length": 50,
-	  "format-paused": "{status_icon}  {artist} - {title}   ",
-	  "player-icons": {
-		  "default": "▶",
-		  "mpv": "🎵"
-	  },
-	    "status-icons": {
-		    "paused": "⏸"
-	    },
-	  "ignored-players": ["Blanket"]
- }
+    "custom/nowplaying",
+    // "custom/updates",
+		"custom/spacer",
+		"pulseaudio",
+		"custom/spacer",
+		"bluetooth",
+		// "custom/spacer",
+		// "custom/vpn",
+		"custom/spacer",
+		"network",
+		"custom/spacer",
+		"battery"
+	],
+	"group/tray-expander": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"children-class": "tray-group-item"
+		},
+		"modules": ["custom/expand-icon", "tray"]
+	},
+	"custom/expand-icon": {
+		"format": "",
+		"tooltip": false
+	}
 }
