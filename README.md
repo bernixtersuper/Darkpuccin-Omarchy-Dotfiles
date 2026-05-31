@@ -46,13 +46,43 @@ omarchy theme set "Catppuccin Dark"
 
 ## Setup
 
-Clone the repo and run the install script to symlink configs:
+Requires [Omarchy](https://omarchy.org/) to be installed first.
 
 ```bash
 git clone https://github.com/bernixtersuper/Darkpuccin-Omarchy-Dotfiles.git ~/dotfiles
+cd ~/dotfiles
+./install.sh
 ```
 
-Requires [Omarchy](https://omarchy.org/) to be installed.
+The install script syncs `.config/`, `.local/`, and `.bashrc` to your home directory, rebuilds the font cache, and marks omarchy bin scripts as executable. Each section prompts before copying so you can skip what you don't need.
+
+After installing, apply a theme:
+
+```bash
+omarchy theme set "Catppuccin Dark"
+```
+
+---
+
+## Scripts
+
+### Condensed Mode (`omarchy-hyprland-window-condensed-toggle`)
+
+Toggles a compact window layout: removes all gaps and hides borders on single-window workspaces. Useful for focused work or small screens.
+
+This is a [pending PR](https://github.com/basecamp/omarchy/pulls) not yet merged into official Omarchy. The install script patches it in automatically.
+
+**Toggle via keybind** — add to `~/.config/hypr/bindings.conf`:
+
+```
+bind = $mod, C, exec, omarchy-hyprland-window-condensed-toggle
+```
+
+Or run directly:
+
+```bash
+omarchy-hyprland-window-condensed-toggle
+```
 
 ---
 

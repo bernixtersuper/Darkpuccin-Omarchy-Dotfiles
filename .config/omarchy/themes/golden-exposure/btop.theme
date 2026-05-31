@@ -1,0 +1,83 @@
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#080604"
+
+# Main text color
+theme[main_fg]="#ffffff"
+
+# Title color for boxes
+theme[title]="#ffffff"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#f0a010"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#1a1208"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#f0a010"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#2a1a0a"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#ffffff"
+
+# Background color of the percentage meters
+theme[meter_bg]="#1a1208"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#2a7870"
+
+# CPU, Memory, Network, Proc box outline colors
+theme[cpu_box]="#f0a010"
+theme[mem_box]="#2a7870"
+theme[net_box]="#c85018"
+theme[proc_box]="#3a4a80"
+
+# Box divider line and small boxes line color
+theme[div_line]="#2a1a0a"
+
+# Temperature graph color (Teal -> Amber -> Burnt Orange)
+theme[temp_start]="#2a7870"
+theme[temp_mid]="#f0a010"
+theme[temp_end]="#c85018"
+
+# CPU graph colors (Teal -> Cobalt -> Amber)
+theme[cpu_start]="#2a7870"
+theme[cpu_mid]="#3a4a80"
+theme[cpu_end]="#f0a010"
+
+# Mem/Disk free meter (Amber -> Cobalt -> Teal)
+theme[free_start]="#f0a010"
+theme[free_mid]="#3a4a80"
+theme[free_end]="#2a7870"
+
+# Mem/Disk cached meter (Cobalt -> Teal -> Cream)
+theme[cached_start]="#3a4a80"
+theme[cached_mid]="#2a7870"
+theme[cached_end]="#ffffff"
+
+# Mem/Disk available meter (Amber -> Burnt Orange)
+theme[available_start]="#f0a010"
+theme[available_mid]="#c85018"
+theme[available_end]="#c85018"
+
+# Mem/Disk used meter (Teal -> Cobalt -> Amber)
+theme[used_start]="#2a7870"
+theme[used_mid]="#3a4a80"
+theme[used_end]="#f0a010"
+
+# Download graph colors (Amber -> Burnt Orange)
+theme[download_start]="#f0a010"
+theme[download_mid]="#c85018"
+theme[download_end]="#c85018"
+
+# Upload graph colors (Teal -> Cobalt)
+theme[upload_start]="#2a7870"
+theme[upload_mid]="#3a4a80"
+theme[upload_end]="#3a4a80"
+
+# Process box color gradient for threads, mem and cpu usage (Cobalt -> Teal -> Amber)
+theme[process_start]="#3a4a80"
+theme[process_mid]="#2a7870"
+theme[process_end]="#f0a010"
