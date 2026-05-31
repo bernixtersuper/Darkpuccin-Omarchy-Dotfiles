@@ -44,6 +44,18 @@ omarchy theme set "Catppuccin Dark"
 
 ---
 
+### Golden Exposure
+Warm amber and gold tones. Film photography aesthetic.
+
+![Golden Exposure preview](.config/omarchy/themes/golden-exposure/preview.png)
+
+**Install:**
+```bash
+omarchy theme set "golden-exposure"
+```
+
+---
+
 ## Setup
 
 Requires [Omarchy](https://omarchy.org/) to be installed first.
