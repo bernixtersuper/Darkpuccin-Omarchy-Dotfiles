@@ -78,16 +78,40 @@ omarchy theme set "Catppuccin Dark"
 
 ## Scripts
 
-### Dense Mode (`~/.config/hypr/scripts/toggle-dense.sh`)
+### Dense Mode (`toggle-dense.sh`)
 
 Toggles a dense window layout: zero gaps, no border on single-window workspaces, no shadow. Useful for focused work or small screens.
 
 **Keybind:** `SUPER SHIFT BACKSPACE`
 
-Or run directly:
+---
+
+### Screen Rotation (`set-monitor-transform.sh`)
+
+Rotates a named monitor to a given transform while preserving its current x/y position (reads from `hyprctl monitors -j` before applying).
 
 ```bash
-~/.config/hypr/scripts/toggle-dense.sh
+~/.config/hypr/scripts/set-monitor-transform.sh <monitor> <transform>
+# transform: 0=normal, 1=90 CCW, 2=180, 3=90 CW
+```
+
+Keybinds for eDP-1 (laptop screen):
+
+| Key | Action |
+|-----|--------|
+| `SUPER [` | Normal |
+| `SUPER ]` | Flipped 180 |
+| `SUPER SHIFT [` | Rotate left 90 |
+| `SUPER SHIFT ]` | Rotate right 90 |
+
+---
+
+### Monitor Resume Fix (`fix-monitors-on-resume.sh`)
+
+Re-applies all connected monitors' current transforms after wake from sleep to fix position drift. Runs automatically on resume via `hypridle.conf` and on boot via `autostart.conf`.
+
+```bash
+~/.config/hypr/scripts/fix-monitors-on-resume.sh
 ```
 
 ---
