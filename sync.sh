@@ -7,17 +7,11 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-THEMES=(catppuccin-dark golden-exposure hatsune-miku neon-blade-runner)
-
 # Resolve a repo-relative path to its live system counterpart
 live_path() {
   local rel="$1"
   case "$rel" in
     .config/*) echo "$HOME/$rel" ;;
-    catppuccin-dark/*|golden-exposure/*|hatsune-miku/*|neon-blade-runner/*)
-      local theme="${rel%%/*}"
-      echo "$HOME/.config/omarchy/themes/$theme/${rel#*/}"
-      ;;
     *) echo "" ;;
   esac
 }
