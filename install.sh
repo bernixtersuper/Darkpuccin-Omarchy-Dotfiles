@@ -22,12 +22,10 @@ if confirm "Copy .config/ to ~/.config/?"; then
   echo "  -> .config/ synced"
 fi
 
-# .local (includes omarchy bin patches and fonts)
+# .local (fonts: omarchy.ttf, yumin.ttf; qalculate exchange rate data)
 if confirm "Copy .local/ to ~/.local/?"; then
   rsync -a --no-perms "$DOTFILES/.local/" "$HOME/.local/"
-  chmod +x "$HOME/.local/share/omarchy/bin/"* 2>/dev/null || true
   echo "  -> .local/ synced"
-  echo "  -> omarchy bin scripts marked executable"
 fi
 
 # .bashrc

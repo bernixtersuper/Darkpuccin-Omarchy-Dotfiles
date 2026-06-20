@@ -66,7 +66,7 @@ cd ~/dotfiles
 ./install.sh
 ```
 
-The install script syncs `.config/`, `.local/`, and `.bashrc` to your home directory, rebuilds the font cache, and marks omarchy bin scripts as executable. Each section prompts before copying so you can skip what you don't need.
+The install script syncs `.config/` (includes all themes), `.local/` (fonts, qalculate data), and `.bashrc` to your home directory, then rebuilds the font cache. Each section prompts before copying so you can skip what you don't need.
 
 After installing, apply a theme:
 
