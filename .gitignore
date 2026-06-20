@@ -38,3 +38,4 @@
 .config/mise/
 .config/omarchy/current/
 .config/omarchy/themes/catppuccin-dark-og/
+.config/fcitx5/conf/cached_layouts
