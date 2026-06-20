@@ -1,0 +1,21 @@
+{
+	"pulseaudio": {
+		"format": "<span size='14000'>{icon}</span>",
+		"format-muted": "<span size='14000'>󰖁</span>",
+		"format-source": "{volume}% ",
+		"format-source-muted": "MUTE",
+		"format-icons": {
+			"headset": "󰋋",
+			"headphone": "󰋋",
+			"default": [
+				"󰕿",
+				"󰖀",
+				"󰕾"
+			]
+		},
+		"on-click": "omarchy launch audio",
+		"on-click-right": "pamixer -t",
+		"scroll-step": 5,
+		"tooltip-format": "<b>Output Device</b>: {desc}"
+	}
+}
