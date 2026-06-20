@@ -39,3 +39,7 @@
 .config/omarchy/current/
 .config/omarchy/themes/catppuccin-dark-og/
 .config/fcitx5/conf/cached_layouts
+.config/btop/themes/
+.config/mozc/
+.config/nvim/lua/plugins/theme.lua
+.stow-local-ignore
