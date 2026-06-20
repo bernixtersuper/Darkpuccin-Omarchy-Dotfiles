@@ -1,0 +1,29 @@
+#workspaces {
+	margin: 0;
+	padding: 0;
+}
+
+#workspaces button {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+	text-shadow: none;
+	padding: 0 7px;
+	margin: 0 1px;
+	min-width: 0;
+	color: @workspace_inactive;
+	font-size: 14px;
+}
+
+#workspaces button.active {
+	color: @workspace_active;
+	border-bottom: 2px solid currentColor;
+}
+
+#workspaces button:not(.empty):not(.active) {
+	color: #ffffff;
+}
+
+#workspaces button.active.occupied {
+	color: @workspace_active;
+}
