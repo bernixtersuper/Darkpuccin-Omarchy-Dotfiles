@@ -11,7 +11,7 @@ Includes custom themes, hyprland config, waybar, walker, and more.
 ### Hatsune Miku
 Teal and cyan aesthetic inspired by the virtual idol herself.
 
-![Hatsune Miku preview](hatsune-miku/preview.png)
+![Hatsune Miku preview](.config/omarchy/themes/hatsune-miku/preview.png)
 
 **Install:**
 ```bash
@@ -23,7 +23,7 @@ omarchy theme set "Hatsune Miku"
 ### Neon Blade Runner
 Hot pink and magenta neon vibes. Dark cyberpunk atmosphere.
 
-![Neon Blade Runner preview](neon-blade-runner/preview.png)
+![Neon Blade Runner preview](.config/omarchy/themes/neon-blade-runner/preview.png)
 
 **Install:**
 ```bash
@@ -35,7 +35,7 @@ omarchy theme set "Neon Blade Runner"
 ### Catppuccin Dark
 Deep purple Catppuccin Mocha palette with a darker twist.
 
-![Catppuccin Dark preview](catppuccin-dark/preview.png)
+![Catppuccin Dark preview](.config/omarchy/themes/catppuccin-dark/preview.png)
 
 **Install:**
 ```bash
