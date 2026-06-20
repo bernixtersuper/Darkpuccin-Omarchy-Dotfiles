@@ -12,6 +12,7 @@ live_path() {
   local rel="$1"
   case "$rel" in
     .config/*) echo "$HOME/$rel" ;;
+    keyd/*) echo "/etc/keyd/${rel#keyd/}" ;;
     *) echo "" ;;
   esac
 }

@@ -89,12 +89,18 @@ Files skipped above and why:
 - `monitors.conf` — hardcodes laptop monitor names, resolutions and positions
 - `set-monitor-transform.sh` — hardcodes native resolutions per monitor name
 
-**keyd** also needs manual setup on the new machine (lives in `/etc/keyd/`, requires sudo):
+**keyd** also needs manual setup on the new machine. Configs are in `keyd/` in this repo but live in `/etc/keyd/` and require sudo to install:
 
-- `/etc/keyd/keyboard.conf` — CapsLock-as-nav-modifier layer (Caps+HJKL = arrows, Caps+;/' = PgUp/PgDn, etc.)
-- `/etc/keyd/thinkpad.conf` — ThinkPad media button remapping (only needed on ThinkPad)
+```bash
+sudo cp keyd/keyboard.conf /etc/keyd/keyboard.conf
+sudo keyd reload
+# ThinkPad only:
+sudo cp keyd/thinkpad.conf /etc/keyd/thinkpad.conf
+sudo keyd reload
+```
 
-After editing: `sudo keyd reload`
+- `keyboard.conf` — CapsLock-as-nav-modifier layer (Caps+HJKL = arrows, Caps+;/' = PgUp/PgDn, etc.)
+- `thinkpad.conf` — ThinkPad media button remapping (`17aa:5054`)
 
 ---
 
