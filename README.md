@@ -78,22 +78,16 @@ omarchy theme set "Catppuccin Dark"
 
 ## Scripts
 
-### Condensed Mode (`omarchy-hyprland-window-condensed-toggle`)
+### Dense Mode (`~/.config/hypr/scripts/toggle-dense.sh`)
 
-Toggles a compact window layout: removes all gaps and hides borders on single-window workspaces. Useful for focused work or small screens.
+Toggles a dense window layout: zero gaps, no border on single-window workspaces, no shadow. Useful for focused work or small screens.
 
-This is a [pending PR](https://github.com/basecamp/omarchy/pulls) not yet merged into official Omarchy. The install script patches it in automatically.
-
-**Toggle via keybind** — add to `~/.config/hypr/bindings.conf`:
-
-```
-bind = $mod, C, exec, omarchy-hyprland-window-condensed-toggle
-```
+**Keybind:** `SUPER SHIFT BACKSPACE`
 
 Or run directly:
 
 ```bash
-omarchy-hyprland-window-condensed-toggle
+~/.config/hypr/scripts/toggle-dense.sh
 ```
 
 ---
