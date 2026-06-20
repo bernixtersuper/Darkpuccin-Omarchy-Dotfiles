@@ -74,6 +74,21 @@ After installing, apply a theme:
 omarchy theme set "Catppuccin Dark"
 ```
 
+### Copying to a different machine
+
+Some configs are hardware-specific and should be skipped when installing on a new PC. Use `--skip` to exclude them:
+
+```bash
+./install.sh --skip .config/hypr/monitors.conf \
+             --skip .config/hypr/scripts/set-monitor-transform.sh
+```
+
+Then write a fresh `~/.config/hypr/monitors.conf` for the PC's actual monitors. Run with `--dry-run` first to preview what would change.
+
+Files skipped above and why:
+- `monitors.conf` — hardcodes laptop monitor names, resolutions and positions
+- `set-monitor-transform.sh` — hardcodes native resolutions per monitor name
+
 ---
 
 ## Scripts
