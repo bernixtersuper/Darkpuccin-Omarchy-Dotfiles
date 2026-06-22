@@ -1,4 +1,4 @@
 @define-color foreground #ffffff;
-@define-color background rgba(0, 0, 0, 1);
+@define-color background #000000;
 @define-color workspace_active rgba(57, 197, 187, 0.93);
 @define-color workspace_inactive #0d2020;
