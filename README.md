@@ -106,14 +106,6 @@ sudo keyd reload
 
 ## Scripts
 
-### Dense Mode (`toggle-dense.sh`)
-
-Toggles a dense window layout: zero gaps, no border on single-window workspaces, no shadow. Useful for focused work or small screens.
-
-**Keybind:** `SUPER SHIFT BACKSPACE`
-
----
-
 ### Screen Rotation (`set-monitor-transform.sh`)
 
 Rotates a named monitor to a given transform while preserving its current x/y position (reads from `hyprctl monitors -j` before applying).
