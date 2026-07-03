@@ -28,7 +28,7 @@
 	autoupdate = true        # Apply stored conflict resolutions automatically
 [user]
 	name = Bernardo Ortiz
-	email = bernixtersuper@gmail.com
+	email = bortiz@itba.edu.ar
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential

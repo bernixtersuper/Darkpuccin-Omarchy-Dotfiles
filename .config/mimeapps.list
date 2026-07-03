@@ -22,7 +22,7 @@ image/gif=imv.desktop
 image/webp=imv.desktop
 image/bmp=imv.desktop
 image/tiff=imv.desktop
-application/pdf=org.gnome.Evince.desktop
+application/pdf=zen.desktop
 text/html=chromium.desktop
 x-scheme-handler/http=chromium.desktop
 x-scheme-handler/https=chromium.desktop
@@ -45,6 +45,9 @@ video/x-theora+ogg=mpv.desktop
 application/ogg=mpv.desktop
 x-scheme-handler/mailto=HEY.desktop
 application/zip=org.gnome.Nautilus.desktop
+image/heif=imv-dir.desktop
 
 [Added Associations]
 application/zip=org.gnome.Nautilus.desktop;
+application/pdf=zen.desktop;
+image/heif=imv-dir.desktop;
