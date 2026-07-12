@@ -1,0 +1,9 @@
+/* Nautilus only: pure black background (other GTK4 apps unaffected) */
+window.nautilus-window {
+  --window-bg-color: #000000;
+  --view-bg-color: #000000;
+  --sidebar-bg-color: #000000;
+  --sidebar-backdrop-color: #000000;
+  --headerbar-bg-color: #000000;
+  --headerbar-backdrop-color: #000000;
+}
