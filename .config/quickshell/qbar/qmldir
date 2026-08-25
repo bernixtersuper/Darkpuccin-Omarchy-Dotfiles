@@ -1,0 +1,10 @@
+singleton Theme 1.0 Theme.qml
+Module 1.0 Module.qml
+Workspaces 1.0 Workspaces.qml
+WindowTitle 1.0 WindowTitle.qml
+Clock 1.0 Clock.qml
+NowPlaying 1.0 NowPlaying.qml
+Volume 1.0 Volume.qml
+Network 1.0 Network.qml
+Battery 1.0 Battery.qml
+Bluetooth 1.0 Bluetooth.qml

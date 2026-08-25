@@ -13,3 +13,4 @@ source ~/.local/share/omarchy/default/bash/rc
 alias cmm='cmatrix -C magenta'
 alias tcm='tclock -c magenta'
 alias neofetch='fastfetch -c examples/13.jsonc'
+alias sgc='cd /home/berni/Desktop/Dev/senjougahara-hisyo && claude'

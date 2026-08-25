@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Launch Claude Code using the isolated "uri" account (urielsosavazquez@gmail.com).
+# Config, credentials and identity live in ~/.claude-uri; skills, plugins, memory
+# and settings are symlinked back to the default ~/.claude so tooling stays shared.
+exec env CLAUDE_CONFIG_DIR="$HOME/.claude-uri" claude "$@"

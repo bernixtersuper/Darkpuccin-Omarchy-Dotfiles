@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: parse-to-md <filepath>" >&2
+    exit 1
+fi
+
+INPUT="$1"
+
+if [[ ! -f "$INPUT" ]]; then
+    echo "Error: file not found: $INPUT" >&2
+    exit 1
+fi
+
+DIR="$(dirname "$INPUT")"
+BASENAME="$(basename "$INPUT")"
+NAME="${BASENAME%.*}"
+OUTPUT="$DIR/$NAME.md"
+
+/home/berni/.venv/markitdown/bin/markitdown "$INPUT" > "$OUTPUT"
+echo "Saved: $OUTPUT"

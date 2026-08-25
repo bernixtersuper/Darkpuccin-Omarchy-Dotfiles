@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SOURCE="/home/berni/Desktop/Facultad_Obsidian/"
+DEST="/mnt/media/obsidian/"
+LOG_DIR="/home/berni/.local/share/backup-obsidian"
+LOG_FILE="$LOG_DIR/backup.log"
+
+mkdir -p "$LOG_DIR"
+
+timestamp() { date '+%Y-%m-%d %H:%M:%S'; }
+
+log() { echo "[$(timestamp)] $*" | tee -a "$LOG_FILE"; }
+
+# Verify mount is alive (stale CIFS shows the dir but fails on access)
+if ! ls "$DEST" &>/dev/null; then
+    log "ERROR: $DEST is not accessible (stale or unmounted). Aborting."
+    exit 1
+fi
+
+log "Starting Obsidian backup: $SOURCE -> $DEST"
+
+rsync \
+    --archive \
+    --copy-links \
+    --delete \
+    --exclude='.trash/' \
+    --exclude='.obsidian/workspace.json' \
+    --stats \
+    "$SOURCE" "$DEST" \
+    2>&1 | tee -a "$LOG_FILE"
+
+log "Backup complete."

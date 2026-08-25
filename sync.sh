@@ -13,11 +13,21 @@ live_path() {
   case "$rel" in
     .config/*) echo "$HOME/$rel" ;;
     .claude/skills/*) echo "$HOME/$rel" ;;
+    .local/bin/*) echo "$HOME/$rel" ;;
     Music/*) echo "$HOME/$rel" ;;
+    .bashrc|.bash_profile) echo "$HOME/$rel" ;;
+    etc/*) echo "/etc/${rel#etc/}" ;;
     keyd/*) echo "/etc/keyd/${rel#keyd/}" ;;
     *) echo "" ;;
   esac
 }
+
+# Regenerate generated manifests (not copied from a live path).
+if command -v pacman >/dev/null 2>&1; then
+  mkdir -p "$REPO/packages"
+  pacman -Qqe > "$REPO/packages/pacman-explicit.txt"
+  pacman -Qqm > "$REPO/packages/aur.txt"
+fi
 
 changed=0
 missing=0
