@@ -97,6 +97,26 @@ elif confirm "Copy .bashrc to ~/.bashrc?"; then
   fi
 fi
 
+# .claude/skills (personal Claude Code skills)
+if [[ -d "$DOTFILES/.claude/skills" ]] && confirm "Copy .claude/skills/ to ~/.claude/skills/?"; then
+  mkdir -p "$HOME/.claude/skills"
+  rsync_install "$DOTFILES/.claude/skills/" "$HOME/.claude/skills/" ".claude/skills/"
+  $DRY_RUN || echo "  -> .claude/skills/ synced"
+fi
+
+# Music playlist updater script
+if [[ -f "$DOTFILES/Music/update-playlists.sh" ]] && confirm "Copy Music/update-playlists.sh to ~/Music/?"; then
+  if $DRY_RUN; then
+    echo "  would copy Music/update-playlists.sh -> $HOME/Music/"
+  else
+    mkdir -p "$HOME/Music"
+    cp --backup=simple --suffix=".bak-$(date +%Y%m%d)" \
+      "$DOTFILES/Music/update-playlists.sh" "$HOME/Music/update-playlists.sh"
+    chmod +x "$HOME/Music/update-playlists.sh"
+    echo "  -> Music/update-playlists.sh copied"
+  fi
+fi
+
 if ! $DRY_RUN; then
   if command -v fc-cache &>/dev/null; then
     fc-cache -f
