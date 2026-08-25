@@ -46,6 +46,9 @@ application/ogg=mpv.desktop
 x-scheme-handler/mailto=HEY.desktop
 application/zip=org.gnome.Nautilus.desktop
 image/heif=imv-dir.desktop
+x-scheme-handler/readest=readest-handler.desktop
+x-scheme-handler/readest-onedrive=readest-handler.desktop
+x-scheme-handler/com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq=readest-handler.desktop
 
 [Added Associations]
 application/zip=org.gnome.Nautilus.desktop;
