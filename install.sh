@@ -3,27 +3,43 @@
 # Installs Berni's Omarchy dotfiles to the current user's home directory.
 # Requires Omarchy (https://omarchy.org) to be installed first.
 #
-# Usage: ./install.sh [--dry-run] [--skip <path> ...]
+# Usage: ./install.sh [--dry-run] [--new-machine] [--skip <path> ...]
 #   --dry-run        Show what would change without writing anything.
+#   --new-machine    Installing onto a DIFFERENT machine: auto-skips the configs
+#                    that hardcode this laptop's hardware (currently just
+#                    hypr/monitors.lua). Write a fresh monitors.lua afterwards.
 #   --skip <path>    Skip a repo-relative path. Can be repeated.
 #                    e.g. --skip .config/hypr/monitors.lua
 #
 # Existing files that would be overwritten are backed up to ~/.dotfiles-backup/
+#
+# Sections that write outside $HOME (etc/, keyd/) prompt separately and use
+# sudo. Run this from a real terminal so sudo can ask for your password.
 
 set -e
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DRY_RUN=false
+NEW_MACHINE=false
 SKIPS=()
+
+# Configs that hardcode this specific laptop's hardware. --new-machine skips
+# these; everything else in the repo is portable between Omarchy boxes.
+HARDWARE_SPECIFIC=(".config/hypr/monitors.lua")
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run) DRY_RUN=true ;;
+    --new-machine) NEW_MACHINE=true ;;
     --skip) shift; SKIPS+=("$1") ;;
     *) echo "Unknown flag: $1"; exit 1 ;;
   esac
   shift
 done
+
+if $NEW_MACHINE; then
+  SKIPS+=("${HARDWARE_SPECIFIC[@]}")
+fi
 
 BACKUP_DIR="$HOME/.dotfiles-backup/$(date +%Y%m%d-%H%M%S)"
 
@@ -46,16 +62,43 @@ exclude_flags() {
   done
 }
 
+# Install ONLY files git tracks, never whole directory trees.
+#
+# The repo working tree also contains gitignored files -- omarchy regenerates
+# .config/nvim/lua/plugins/theme.lua and .config/btop/themes/ on every theme
+# switch, plus fcitx5 caches, mozc state and .local/share/omarchy/. Those are
+# ignored precisely because they must not travel to another machine, and an
+# rsync of the directory would have carried them along.
+
+# Emit tracked files under $1, relative to it, NUL-delimited.
+# NOTE: this must be piped straight into rsync -- a bash variable cannot hold
+# NUL bytes, so capturing it with $(...) would splice every path into one.
+tracked_rel() {
+  local prefix="$1"
+  (cd "$DOTFILES" && git ls-files -z -- "$prefix") \
+    | while IFS= read -r -d '' f; do
+        local rel="${f#"$prefix"}"
+        [[ "$(basename "$rel")" == ".gitkeep" ]] && continue
+        printf '%s\0' "$rel"
+      done
+}
+
 rsync_install() {
   local src="$1" dst="$2" prefix="$3"
   local excludes
   mapfile -t excludes < <(exclude_flags "$prefix")
-  # .gitkeep only exists to keep a dir in git; it has no meaning on live.
-  excludes+=("--exclude=.gitkeep")
+
+  if [[ -z "$(tracked_rel "$prefix" | tr -d '\0')" ]]; then
+    echo "  (nothing tracked under $prefix)"
+    return 0
+  fi
+
   if $DRY_RUN; then
-    rsync -a --no-perms --dry-run --itemize-changes "${excludes[@]}" "$src" "$dst" | grep '^>' || echo "  (no changes)"
+    tracked_rel "$prefix" | rsync -a --no-perms --dry-run --itemize-changes \
+      --from0 --files-from=- "${excludes[@]}" "$src" "$dst" | grep '^>' || echo "  (no changes)"
   else
-    rsync -a --no-perms --backup --backup-dir="$BACKUP_DIR" "${excludes[@]}" "$src" "$dst"
+    tracked_rel "$prefix" | rsync -a --no-perms --backup --backup-dir="$BACKUP_DIR" \
+      --from0 --files-from=- "${excludes[@]}" "$src" "$dst"
   fi
 }
 
@@ -101,6 +144,26 @@ if confirm "Copy .config/ to ~/.config/?"; then
   $DRY_RUN || echo "  -> .config/ synced"
 fi
 
+# hyprland.lua does `require("hypr.monitors")`, so that file has to exist even
+# when --new-machine skipped ours. A stock Omarchy install already ships one
+# (generic preferred/auto), but if it is missing for any reason, drop the
+# packaged default in rather than leaving Hyprland with a broken require.
+if $NEW_MACHINE && ! $DRY_RUN; then
+  if [[ ! -f "$HOME/.config/hypr/monitors.lua" ]]; then
+    default_monitors="${OMARCHY_PATH:-/usr/share/omarchy}/config/hypr/monitors.lua"
+    if [[ -f "$default_monitors" ]]; then
+      mkdir -p "$HOME/.config/hypr"
+      cp "$default_monitors" "$HOME/.config/hypr/monitors.lua"
+      echo "  -> monitors.lua: installed Omarchy's auto-detect default (yours was skipped)"
+    else
+      echo "  WARNING: no ~/.config/hypr/monitors.lua and no packaged default;"
+      echo "           hyprland.lua will fail on require(\"hypr.monitors\")."
+    fi
+  else
+    echo "  -> monitors.lua: kept the one already on this machine (yours was skipped)"
+  fi
+fi
+
 # .local (fonts: yumin.ttf; personal scripts in .local/bin)
 if confirm "Copy .local/ to ~/.local/?"; then
   rsync_install "$DOTFILES/.local/" "$HOME/.local/" ".local/"
@@ -116,6 +179,18 @@ elif confirm "Copy .bashrc to ~/.bashrc?"; then
   else
     cp --backup=simple --suffix=".bak-$(date +%Y%m%d)" "$DOTFILES/.bashrc" "$HOME/.bashrc"
     echo "  -> .bashrc copied"
+  fi
+fi
+
+# .bash_profile
+if skipped_file ".bash_profile"; then
+  echo "  skipped: .bash_profile"
+elif [[ -f "$DOTFILES/.bash_profile" ]] && confirm "Copy .bash_profile to ~/.bash_profile?"; then
+  if $DRY_RUN; then
+    echo "  would copy .bash_profile"
+  else
+    cp --backup=simple --suffix=".bak-$(date +%Y%m%d)" "$DOTFILES/.bash_profile" "$HOME/.bash_profile"
+    echo "  -> .bash_profile copied"
   fi
 fi
 
@@ -155,6 +230,76 @@ if [[ -f "$DOTFILES/Music/update-playlists.sh" ]] && confirm "Copy Music/update-
   fi
 fi
 
+# ---------------------------------------------------------------------------
+# keyd (/etc/keyd) — needs root
+# ---------------------------------------------------------------------------
+# keyd intercepts input before Hyprland sees it, so this is what provides the
+# CapsLock nav layer. Without it, Caps+HJKL does nothing.
+#   keyboard.conf  CapsLock-as-nav layer, applied to all keyboards via `*`
+#   thinkpad.conf  ThinkPad media buttons (17aa:5054) — harmless elsewhere,
+#                  the device id simply never matches
+#   mouse.conf     X3-5.4 mouse side buttons
+if [[ -d "$DOTFILES/keyd" ]] && confirm "Install keyd configs to /etc/keyd/ (needs sudo)?"; then
+  if $DRY_RUN; then
+    for f in "$DOTFILES"/keyd/*.conf; do echo "  would install $(basename "$f") -> /etc/keyd/"; done
+  elif ! command -v keyd &>/dev/null; then
+    echo "  SKIPPED: keyd is not installed. Run: omarchy pkg add keyd"
+  else
+    sudo mkdir -p /etc/keyd
+    for f in "$DOTFILES"/keyd/*.conf; do
+      sudo install -o root -g root -m 644 "$f" "/etc/keyd/$(basename "$f")"
+      echo "  -> /etc/keyd/$(basename "$f")"
+    done
+    sudo systemctl enable --now keyd 2>/dev/null || true
+    sudo keyd reload && echo "  -> keyd reloaded"
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# etc/ — hardware tweaks, needs root
+# ---------------------------------------------------------------------------
+# These are tuned for a ThinkPad E14 Gen 7: rtw89 wifi, supergfxd, power-profile
+# and wifi-powersave udev rules, usb autosuspend. On different hardware they are
+# usually harmless but pointless — and a wrong modprobe option can keep a driver
+# from loading, so this is opt-in and separate from everything else.
+if [[ -d "$DOTFILES/etc" ]] && confirm "Install etc/ hardware tweaks to /etc/ (needs sudo; ThinkPad-specific)?"; then
+  if $DRY_RUN; then
+    (cd "$DOTFILES/etc" && find . -type f | sed 's|^\./|  would install -> /etc/|')
+  else
+    (cd "$DOTFILES/etc" && find . -type f -printf '%P\n') | while read -r rel; do
+      sudo install -D -o root -g root -m 644 "$DOTFILES/etc/$rel" "/etc/$rel"
+      echo "  -> /etc/$rel"
+    done
+    sudo udevadm control --reload-rules 2>/dev/null || true
+    echo "  -> udev rules reloaded (modprobe/sysctl changes need a reboot)"
+  fi
+fi
+
+# ---------------------------------------------------------------------------
+# Packages
+# ---------------------------------------------------------------------------
+# pacman-explicit.txt is every explicitly-installed package; aur.txt is the AUR
+# subset. --needed means already-installed packages are left alone. Omarchy's
+# own packages are in this list too, so on a fresh Omarchy box most of it is
+# already satisfied and this just fills in the extras.
+if [[ -f "$DOTFILES/packages/pacman-explicit.txt" ]] && confirm "Install packages from packages/ (needs sudo + AUR helper)?"; then
+  if $DRY_RUN; then
+    echo "  would install $(wc -l < "$DOTFILES/packages/pacman-explicit.txt") explicit packages"
+    echo "  ($(wc -l < "$DOTFILES/packages/aur.txt") of them from the AUR)"
+  else
+    # Repo packages first, then AUR — yay handles both but is slower, so only
+    # hand it what pacman could not resolve.
+    sudo pacman -S --needed --noconfirm - < "$DOTFILES/packages/pacman-explicit.txt" 2>/dev/null || \
+      echo "  some packages are not in the repos; trying the AUR helper for the rest"
+    if command -v yay &>/dev/null; then
+      yay -S --needed --noconfirm - < "$DOTFILES/packages/aur.txt" || true
+    else
+      echo "  no yay found; install AUR packages manually from packages/aur.txt"
+    fi
+    echo "  -> packages installed"
+  fi
+fi
+
 if ! $DRY_RUN; then
   if command -v fc-cache &>/dev/null; then
     fc-cache -f
@@ -162,8 +307,24 @@ if ! $DRY_RUN; then
   fi
 
   echo ""
-  echo "Done. Open a new terminal or run: source ~/.bashrc"
-  echo "To apply a theme: omarchy theme set catppuccin-dark"
-  echo "Then log Claude Code in:  claude  -> /login"
+  echo "──────────────────────────────────────────────────────────────"
+  echo "Done. Next steps:"
+  echo ""
+  echo "  1. Reload the shell:      source ~/.bashrc"
+  echo "  2. Reload Hyprland:       hyprctl reload"
+  echo "     then check for errors: hyprctl configerrors"
+  echo "  3. Restart the bar:       omarchy restart shell"
+  echo "  4. Apply a theme:         omarchy theme set catppuccin-dark"
+  echo "  5. Log Claude Code in:    claude   then /login"
+  echo "     (credentials are deliberately not in this repo)"
+  if $NEW_MACHINE; then
+    echo ""
+    echo "  6. WRITE A NEW MONITORS CONFIG — it was skipped on purpose:"
+    echo "       hyprctl monitors all        # see what this machine has"
+    echo "       \$EDITOR ~/.config/hypr/monitors.lua"
+    echo "     Until you do, Hyprland falls back to the generic"
+    echo "     preferred/auto rule, which works but ignores scale/position."
+  fi
+  echo ""
   [[ -d "$BACKUP_DIR" ]] && echo "Overwritten files backed up to: $BACKUP_DIR"
 fi
