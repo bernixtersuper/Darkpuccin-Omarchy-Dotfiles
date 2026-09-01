@@ -317,9 +317,12 @@ if ! $DRY_RUN; then
   echo "  4. Apply a theme:         omarchy theme set catppuccin-dark"
   echo "  5. Log Claude Code in:    claude   then /login"
   echo "     (credentials are deliberately not in this repo)"
+  echo "  6. Re-point the gh credential helper:  gh auth login && gh auth setup-git"
+  echo "     .config/git/config hardcodes this machine's mise gh path, which"
+  echo "     will not exist on the new box; git push fails until you rerun it."
   if $NEW_MACHINE; then
     echo ""
-    echo "  6. WRITE A NEW MONITORS CONFIG — it was skipped on purpose:"
+    echo "  7. WRITE A NEW MONITORS CONFIG — it was skipped on purpose:"
     echo "       hyprctl monitors all        # see what this machine has"
     echo "       \$EDITOR ~/.config/hypr/monitors.lua"
     echo "     Until you do, Hyprland falls back to the generic"

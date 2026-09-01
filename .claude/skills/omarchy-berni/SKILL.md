@@ -466,7 +466,13 @@ run it from a real terminal. `etc/` is ThinkPad E14 Gen 7-specific (rtw89, super
 power-profile/wifi-powersave udev rules) — opt in only on similar hardware.
 
 Post-install: `source ~/.bashrc` → `hyprctl reload` → `hyprctl configerrors` →
-`omarchy restart shell` → `omarchy theme set catppuccin-dark` → `claude` then `/login`.
+`omarchy restart shell` → `omarchy theme set catppuccin-dark` → `claude` then `/login`
+→ `gh auth login && gh auth setup-git`.
+
+> `.config/git/config` carries a `credential.helper` pointing at this machine's
+> **mise-versioned** gh binary (`~/.local/share/mise/installs/gh/<version>/...`). That path
+> won't exist elsewhere and `git push` fails until `gh auth setup-git` rewrites it. It holds
+> no token — the token lives in the system keyring.
 
 ---
 
