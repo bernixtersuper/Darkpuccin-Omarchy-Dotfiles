@@ -413,6 +413,40 @@ System-wide default lives at `/etc/fastfetch/config.jsonc`; the user file overri
 
 ---
 
+## Input methods — fcitx5 (`~/.config/fcitx5/`)
+
+Started by Omarchy 4's `omarchy-fcitx5.service` user unit — **not** from `autostart.lua`.
+
+`profile` defines one group with four input methods; default is `keyboard-latam`:
+
+| Item | Engine |
+|------|--------|
+| `keyboard-us` | US latin |
+| `mozc` | Japanese |
+| `keyboard-latam` | Latin-American latin (**default**) |
+| `pinyin` | Chinese |
+
+Tracked config: `config`, `profile`, and `conf/` — `pinyin.conf`, `chttrans.conf`,
+`punctuation.conf`, `clipboard.conf`, `notifications.conf`, `xcb.conf`.
+
+`pinyin.conf` is heavily customised: Shuangpin **Ziranma**, page size 7, `-`/`=` for
+prev/next page, `;` for quickphrase, `Control+7` forget-word, and a specific fuzzy-match
+set (VE_UE, NG_GN, Inner, InnerShort, PartialFinal on; the rest off).
+`chttrans.conf` binds `Control+Shift+F` for simplified↔traditional via OpenCC.
+
+Requires `fcitx5`, `fcitx5-mozc`, `fcitx5-chinese-addons`, `fcitx5-gtk`, `fcitx5-qt`,
+`fcitx5-configtool` — all in `packages/pacman-explicit.txt`, so the install script's
+package step covers them.
+
+**Not tracked, deliberately:**
+- `conf/cached_layouts` — regenerated cache
+- `~/.config/mozc/` — learned state only (`segment.db`, `boundary.db`, `cform.db`),
+  plus `.history.db`, a record of what was actually typed, and a machine-local
+  `.encrypt_key.db`. No portable settings live there, and it must not reach a public repo.
+  Japanese conversion learning therefore starts fresh on a new machine.
+
+---
+
 ## Dotfiles repo (`~/Desktop/Dev/Darkpuccin-Omarchy-Dotfiles`)
 
 **PUBLIC repo** (github.com/bernixtersuper/Darkpuccin-Omarchy-Dotfiles). Treat everything

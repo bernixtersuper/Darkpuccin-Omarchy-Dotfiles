@@ -36,7 +36,6 @@
 .config/omarchy/themes/catppuccin-dark-og/
 .config/fcitx5/conf/cached_layouts
 .config/btop/themes/
-.config/mozc/
 .config/nvim/lua/plugins/theme.lua
 .stow-local-ignore
 
@@ -79,6 +78,12 @@
 .config/cliamp/resume.json
 .config/cliamp/history.toml
 
-# Hyprland: omarchy writes timestamped backups on every refresh
+# Timestamped backups written by omarchy refresh / manual edits
 .config/hypr/*.bak.*
 .config/omarchy/**/*.bak.*
+.config/fcitx5/*.bak.*
+
+# mozc: learned state only -- segment/boundary/cform DBs, .history.db (a record
+# of what was actually typed) and a machine-local .encrypt_key.db. No portable
+# settings live here, so it stays out of a public repo.
+.config/mozc/
