@@ -1,8 +1,0 @@
-{
-	"custom/clock": {
-		"exec": "date +\"($(date +%w | sed 's/0/日/;s/1/月/;s/2/火/;s/3/水/;s/4/木/;s/5/金/;s/6/土/')) %m月%d日 %H:%M:%S\"",
-		"interval": 1,
-		"format": "{}",
-		"tooltip": false
-	}
-}

@@ -1,8 +1,0 @@
-{
-	"custom/idle-indicator": {
-		"on-click": "omarchy toggle idle",
-		"exec": "/home/berni/.local/share/omarchy/default/waybar/indicators/idle.sh",
-		"signal": 9,
-		"return-type": "json"
-	}
-}

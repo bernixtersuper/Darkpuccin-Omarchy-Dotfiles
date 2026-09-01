@@ -1,7 +1,0 @@
-{
-    "version": "2.2.0",
-    "autoload": {
-        "AT Translated Set 2 keyboard": "VIM_GLOBAL_KEYBINDS",
-        "BT 5.0 KEYBOARD Keyboard": "VIM_GLOBAL_KEYBINDS"
-    }
-}

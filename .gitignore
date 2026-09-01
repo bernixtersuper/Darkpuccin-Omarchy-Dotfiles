@@ -7,12 +7,8 @@
 .config/ibus/
 .config/hyprland-preview-share-picker/
 
-# Typora - exclude app cache/data, keep only user config and themes
-.config/Typora/*
-!.config/Typora/conf/
-!.config/Typora/conf/**
-!.config/Typora/themes/
-!.config/Typora/themes/**
+# Typora - uninstalled, config dropped from the repo entirely
+.config/Typora/
 
 # Keyring (system passwords)
 .local/share/keyrings/
@@ -43,3 +39,46 @@
 .config/mozc/
 .config/nvim/lua/plugins/theme.lua
 .stow-local-ignore
+
+# Zen browser: never track the live profile — it holds cookies, logins.db,
+# key4.db, sqlite DBs and session state. The durable config files are tracked
+# separately under zen/ at repo root (installed into the active profile by
+# install.sh, since the profile dir name is random per machine).
+.config/zen/
+
+# ---------------------------------------------------------------------------
+# Claude Code: config is tracked, CREDENTIALS ARE NOT.
+# ---------------------------------------------------------------------------
+# THIS REPO IS PUBLIC. .credentials.json holds a live OAuth access token and
+# refresh token for the Claude account -- committing it hands over account
+# access to anyone who reads the repo, and git history would keep it after
+# deletion. Never remove these lines.
+.claude/.credentials.json
+.claude/**/.credentials.json
+.claude.json
+.claude.json.backup
+
+# Claude runtime state / history -- not config, and history.jsonl contains
+# verbatim prompts (frequently secrets, paths, personal data).
+.claude/history.jsonl
+.claude/projects/
+.claude/sessions/
+.claude/session-env/
+.claude/shell-snapshots/
+.claude/file-history/
+.claude/paste-cache/
+.claude/backups/
+.claude/cache/
+.claude/telemetry/
+.claude/.last-cleanup
+.claude/plugins/marketplaces/
+.claude/plugins/repos/
+
+# cliamp: runtime state, not config
+.config/cliamp/cliamp.sock.pid
+.config/cliamp/resume.json
+.config/cliamp/history.toml
+
+# Hyprland: omarchy writes timestamped backups on every refresh
+.config/hypr/*.bak.*
+.config/omarchy/**/*.bak.*

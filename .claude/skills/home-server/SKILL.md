@@ -1,6 +1,6 @@
 ---
 name: home-server
-description: Manage Bernardo's Arch Linux home server at 192.168.0.242. Use this skill whenever the user mentions the server, asks about Docker, Jellyfin, qBittorrent, Samba, storage, mounts, services, or anything related to the home server setup. Also trigger for SSH, systemctl, disk management, or network questions in the context of the server.
+description: Manage Bernardo's Arch Linux home server at 192.168.1.8 (Tailscale 100.107.216.118). Use this skill whenever the user mentions the server, asks about Docker, Jellyfin, qBittorrent, Samba, storage, mounts, services, or anything related to the home server setup. Also trigger for SSH, systemctl, disk management, or network questions in the context of the server.
 ---
 
 # Home Server Management Skill
@@ -8,12 +8,25 @@ description: Manage Bernardo's Arch Linux home server at 192.168.0.242. Use this
 ## Server Overview
 
 - **OS**: Arch Linux
-- **IP**: 192.168.0.242
-- **SSH**: `ssh -i ~/.ssh/homeserver root@192.168.0.242`
+- **IP (LAN)**: 192.168.1.8  — verified 2026-08-25
+- **IP (Tailscale)**: 100.107.216.118
+- **SSH**: `ssh homeserver` (alias in `~/.ssh/config`; `homeserver-ts` forces Tailscale)
 - **User**: root (and `berni` with sudo)
 - **Shell**: bash (root), zsh (berni)
 
-> SSH key is at `~/.ssh/homeserver` on berni's local machine. Password auth works interactively but not from non-TTY tools — always use `-i ~/.ssh/homeserver`.
+> SSH key is at `~/.ssh/homeserver`, one keypair **per client machine** (not copied
+> between machines). Password auth works interactively but not from non-TTY tools, so
+> a new machine needs `ssh-copy-id -i ~/.ssh/homeserver.pub homeserver` once, run by
+> the user. The `homeserver` alias already sets user, key and `IdentitiesOnly yes`.
+>
+> **The LAN IP changed from 192.168.0.242 to 192.168.1.8** (subnet moved). If the
+> server seems unreachable, re-derive the current address with `tailscale ping
+> 100.107.216.118` — it prints the real endpoint, e.g. `direct 192.168.1.8:41641`.
+>
+> Tailscale caveat: `tailscale ping` can succeed over WireGuard while plain TCP to
+> 100.107.216.118 still times out. Prefer the LAN IP when at home, and do not trust a
+> bare `</dev/tcp/...>` probe — it has reported ports open that real connections
+> could not reach. Verify with an actual client (`ssh`, `smbclient`, `curl`).
 
 ## Hardware
 
@@ -36,11 +49,11 @@ description: Manage Bernardo's Arch Linux home server at 192.168.0.242. Use this
 
 | Service | Port | Access | Status |
 |---------|------|--------|--------|
-| Jellyfin | 8096 | `http://192.168.0.242:8096` | Docker |
-| qBittorrent | 8080 | `http://192.168.0.242:8080` | systemd |
-| Samba | 445 | `smb://192.168.0.242/media` | systemd |
-| SSH | 22 | `ssh root@192.168.0.242` | systemd |
-| Cockpit | 9090 | `http://192.168.0.242:9090` | systemd |
+| Jellyfin | 8096 | `http://192.168.1.8:8096` | Docker — port open |
+| qBittorrent | 8080 | `http://192.168.1.8:8080` | systemd — port open |
+| Samba | 445 | `smb://192.168.1.8/media` | systemd — guest login verified |
+| SSH | 22 | `ssh homeserver` | systemd — port open |
+| Cockpit | 9090 | `http://192.168.1.8:9090` | **port CLOSED as of 2026-08-25** — not running |
 
 ## Media Storage
 
@@ -128,7 +141,7 @@ Mount manually: `sudo mount -a`
 
 - Service: `qbittorrent-nox@root`
 - Default download path: configure to `/srv/media` for unified storage
-- Web UI: `http://192.168.0.242:8080` (user: `admin`)
+- Web UI: `http://192.168.1.8:8080` (user: `admin`)
 
 ```bash
 systemctl status qbittorrent-nox@root
@@ -214,11 +227,11 @@ UUID=b550d84c-978e-4cc9-b180-046af558787a  /srv/media  btrfs  rw,relatime,compre
 - SSH root login enabled (`PermitRootLogin yes`, `PasswordAuthentication yes`)
 - systemd-networkd configured for `enp2s0`
 - zram swap active (3.8G)
-- Cockpit web console available at port 9090
+- Cockpit: port 9090 was **closed** on 2026-08-25 — the unit is not running (was previously documented as available)
 - `/var/log` is on sdb2 — if disk is full, log to `/tmp` instead (tmpfs, always has space)
 - Jellyfin config at `/root/jellyfin/config/` (~434MB total, 373MB metadata)
 
-## Media Structure (actual, as of 2026-06-06)
+## Media Structure (actual, verified over Samba 2026-08-25)
 ```
 /srv/media/
 ├── animeMovies/
@@ -228,5 +241,10 @@ UUID=b550d84c-978e-4cc9-b180-046af558787a  /srv/media  btrfs  rw,relatime,compre
 ├── manga/
 ├── movies/
 ├── music/
-└── series/
+├── obsidian/     <- not in earlier listings
+├── other/        <- not in earlier listings
+├── series/
+└── .Trash-1000/  <- gio trash target, hidden
 ```
+
+Capacity as of 2026-08-25: **931G total, 194G free (~79% used)**.

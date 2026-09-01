@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
+  "bar": {
+    "position": "bottom",
+    "transparent": false,
+    "centerAnchor": "berni.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "berni.workspaces"
+        },
+        {
+          "id": "berni.active-window"
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "id": "berni.clock",
+          "format": "(ddd) MM月dd日 HH:mm:ss",
+          "formatAlt": "yyyy年MM月dd日 (ddd)",
+          "verticalFormat": "HH\n—\nmm",
+          "locale": "ja_JP",
+          "formats": [
+            "(ddd) MM月dd日 HH:mm:ss",
+            "(ddd) MM月dd日 HH:mm",
+            "HH:mm:ss",
+            "MM月dd日(ddd)"
+          ]
+        },
+        {
+          "id": "omarchy.weather"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray"
+        },
+        {
+          "id": "omarchy.tailscale"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.power"
+        }
+      ]
+    },
+    "id": "berni.bar"
+  },
+  "plugins": []
+}

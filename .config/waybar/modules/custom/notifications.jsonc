@@ -1,8 +1,0 @@
-{
-	"custom/notification-silencing-indicator": {
-		"on-click": "omarchy toggle notification silencing",
-		"exec": "/home/berni/.local/share/omarchy/default/waybar/indicators/notification-silencing.sh",
-		"signal": 10,
-		"return-type": "json"
-	}
-}

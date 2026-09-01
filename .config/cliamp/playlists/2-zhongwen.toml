@@ -5,18 +5,22 @@ title = "Coco Elva Tia [JXb04PcA7rg]"
 [[track]]
 path = "/home/berni/Music/中文/Illusionary Daytime (幻奏 Remix) [hATE0C4aQqw].mp3"
 title = "Illusionary Daytime (幻奏 Remix) [hATE0C4aQqw]"
+duration_secs = 130
 
 [[track]]
 path = "/home/berni/Music/中文/Jumping Machine (跳楼机) [TOC78RUj8pg].mp3"
 title = "Jumping Machine (跳楼机) [TOC78RUj8pg]"
+duration_secs = 201
 
 [[track]]
 path = "/home/berni/Music/中文/Love Can...... [ldF57rxmRpQ].mp3"
 title = "Love Can...... [ldF57rxmRpQ]"
+duration_secs = 261
 
 [[track]]
 path = "/home/berni/Music/中文/Marry Me Today [6UlVEo7d6HA].mp3"
 title = "Marry Me Today [6UlVEo7d6HA]"
+duration_secs = 272
 
 [[track]]
 path = "/home/berni/Music/中文/No More [EOkzJ6tzP0g].mp3"
@@ -53,6 +57,7 @@ title = "人间天堂 [kJBjldub6x4]"
 [[track]]
 path = "/home/berni/Music/中文/代替 [LjmlteROZHk].mp3"
 title = "代替 [LjmlteROZHk]"
+duration_secs = 234
 
 [[track]]
 path = "/home/berni/Music/中文/任夏 - 算了吧『當別人問起想你嗎會後悔吧，我的眼淚還是會落下。』【動態歌詞 ｜ Pinyin Lyrics】【PENGUIN MUSIC】 [IGFOHxOJK34].mp3"
@@ -176,6 +181,7 @@ title = "是想你的声音啊 [0oNSHSRZNS0]"
 [[track]]
 path = "/home/berni/Music/中文/最初的记忆·2023 [_mSoIdx30qc].mp3"
 title = "最初的记忆·2023 [_mSoIdx30qc]"
+duration_secs = 199
 
 [[track]]
 path = "/home/berni/Music/中文/最后一页 [UDyhT-6Idek].mp3"

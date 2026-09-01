@@ -6,7 +6,7 @@
 # Usage: ./install.sh [--dry-run] [--skip <path> ...]
 #   --dry-run        Show what would change without writing anything.
 #   --skip <path>    Skip a repo-relative path. Can be repeated.
-#                    e.g. --skip .config/hypr/monitors.conf
+#                    e.g. --skip .config/hypr/monitors.lua
 #
 # Existing files that would be overwritten are backed up to ~/.dotfiles-backup/
 
@@ -50,6 +50,8 @@ rsync_install() {
   local src="$1" dst="$2" prefix="$3"
   local excludes
   mapfile -t excludes < <(exclude_flags "$prefix")
+  # .gitkeep only exists to keep a dir in git; it has no meaning on live.
+  excludes+=("--exclude=.gitkeep")
   if $DRY_RUN; then
     rsync -a --no-perms --dry-run --itemize-changes "${excludes[@]}" "$src" "$dst" | grep '^>' || echo "  (no changes)"
   else
@@ -63,6 +65,26 @@ skipped_file() {
     [[ "$skip" == "$path" ]] && return 0
   done
   return 1
+}
+
+# Resolve the active Zen profile directory. The dir name has a random prefix
+# generated at install time, so it differs per machine and cannot be hardcoded.
+# installs.ini records which profile the browser actually opens; profiles.ini's
+# Default=1 can point elsewhere, so prefer installs.ini.
+zen_profile_dir() {
+  local base="$HOME/.config/zen" name=""
+  [[ -d "$base" ]] || return 1
+  if [[ -f "$base/installs.ini" ]]; then
+    name="$(sed -n 's/^Default=//p' "$base/installs.ini" | head -1)"
+  fi
+  if [[ -z "$name" && -f "$base/profiles.ini" ]]; then
+    name="$(awk -F= '/^Path=/{p=$2} /^Default=1/{print p; exit}' "$base/profiles.ini")"
+  fi
+  if [[ -z "$name" && -f "$base/profiles.ini" ]]; then
+    name="$(sed -n 's/^Path=//p' "$base/profiles.ini" | head -1)"
+  fi
+  [[ -n "$name" && -d "$base/$name" ]] || return 1
+  echo "$base/$name"
 }
 
 $DRY_RUN && echo "[DRY RUN — nothing will be written]" && echo ""
@@ -79,7 +101,7 @@ if confirm "Copy .config/ to ~/.config/?"; then
   $DRY_RUN || echo "  -> .config/ synced"
 fi
 
-# .local (fonts: omarchy.ttf, yumin.ttf; qalculate exchange rate data)
+# .local (fonts: yumin.ttf; personal scripts in .local/bin)
 if confirm "Copy .local/ to ~/.local/?"; then
   rsync_install "$DOTFILES/.local/" "$HOME/.local/" ".local/"
   $DRY_RUN || echo "  -> .local/ synced"
@@ -97,11 +119,27 @@ elif confirm "Copy .bashrc to ~/.bashrc?"; then
   fi
 fi
 
-# .claude/skills (personal Claude Code skills)
-if [[ -d "$DOTFILES/.claude/skills" ]] && confirm "Copy .claude/skills/ to ~/.claude/skills/?"; then
-  mkdir -p "$HOME/.claude/skills"
-  rsync_install "$DOTFILES/.claude/skills/" "$HOME/.claude/skills/" ".claude/skills/"
-  $DRY_RUN || echo "  -> .claude/skills/ synced"
+# .claude (personal skills, settings, theme, plugin registry)
+#
+# NOTE: this deliberately never carries credentials. ~/.claude/.credentials.json
+# holds a live OAuth access + refresh token and is gitignored, so it is not in
+# this repo to copy. After installing, authenticate on the new machine with:
+#   claude   (then /login)
+if [[ -d "$DOTFILES/.claude" ]] && confirm "Copy .claude/ to ~/.claude/ (skills, settings, theme)?"; then
+  mkdir -p "$HOME/.claude"
+  rsync_install "$DOTFILES/.claude/" "$HOME/.claude/" ".claude/"
+  $DRY_RUN || echo "  -> .claude/ synced (log in separately with: claude /login)"
+fi
+
+# Zen browser profile config (user.js, mods, shortcuts, containers, chrome/)
+if [[ -d "$DOTFILES/zen" ]] && confirm "Copy zen/ into the active Zen profile?"; then
+  if ZEN_PROFILE="$(zen_profile_dir)"; then
+    echo "  profile: $ZEN_PROFILE"
+    rsync_install "$DOTFILES/zen/" "$ZEN_PROFILE/" "zen/"
+    $DRY_RUN || echo "  -> zen/ synced (restart Zen to apply user.js)"
+  else
+    echo "  SKIPPED: no Zen profile found. Launch Zen once to create one, then rerun."
+  fi
 fi
 
 # Music playlist updater script
@@ -125,6 +163,7 @@ if ! $DRY_RUN; then
 
   echo ""
   echo "Done. Open a new terminal or run: source ~/.bashrc"
-  echo "To apply a theme: omarchy theme set \"Catppuccin Dark\""
+  echo "To apply a theme: omarchy theme set catppuccin-dark"
+  echo "Then log Claude Code in:  claude  -> /login"
   [[ -d "$BACKUP_DIR" ]] && echo "Overwritten files backed up to: $BACKUP_DIR"
 fi

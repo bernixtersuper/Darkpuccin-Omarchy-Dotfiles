@@ -105,6 +105,8 @@ These Omarchy defaults were explicitly unbound or overridden:
 | `SUPER B` | Bluetooth panel |
 | `SUPER ALT V` | Fix clipboard newlines (strips hard-wraps) |
 | `SUPER SHIFT M` | cliamp (music player TUI) |
+| `SUPER ALT H` | herdr TUI (launch-or-focus, pinned to the `🐑` workspace) |
+| `SUPER SHIFT ALT H` | Move window to the `🐑` workspace (it has no digit) |
 | `SUPER SHIFT Y` | YouTube in Zen |
 | `SUPER SHIFT P` | Perplexity in Firefox |
 | `SUPER SHIFT D` | Discord in Zen |
@@ -445,7 +447,7 @@ EAP-Method=PEAP
 EAP-Identity=bortiz
 EAP-PEAP-Phase2-Method=MSCHAPV2
 EAP-PEAP-Phase2-Identity=bortiz
-EAP-PEAP-Phase2-Password=<REDACTED - rotate this credential>
+EAP-PEAP-Phase2-Password=<REDACTED - see your password manager, never commit this>
 
 [Settings]
 AutoConnect=true
