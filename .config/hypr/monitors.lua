@@ -27,7 +27,7 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = omarchy
 hl.monitor({ output = "DP-3", mode = "1920x1080@100", position = "0x0", scale = 1, transform = 1 })
 
 -- HDMI-A-1: MSI MAG 275QF (1440p), right of DP-3 and above the laptop panel.
--- hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@120", position = "1080x256", scale = 1 })
+hl.monitor({ output = "HDMI-A-1", mode = "2560x1440@120", position = "1080x256", scale = 1 })
 
 -- eDP-1: laptop panel, below HDMI-A-1. Scale 4/3 -> 2160x1350 logical px.
 hl.monitor({ output = "eDP-1", mode = "2880x1800@120", position = "1280x1696", scale = 1.333333 })

@@ -1,5 +1,5 @@
 {
-  "model": "opus",
+  "model": "haiku",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",

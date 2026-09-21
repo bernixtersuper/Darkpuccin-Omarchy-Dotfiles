@@ -3,3 +3,4 @@ repeat = "Off"
 eq_preset = "Flat"
 eq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 shuffle = true
+visualizer = "Wave"

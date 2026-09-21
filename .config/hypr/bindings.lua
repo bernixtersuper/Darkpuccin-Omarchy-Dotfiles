@@ -66,7 +66,7 @@ o.bind("SUPER + D", "Full width", hl.dsp.window.fullscreen({ mode = "maximized" 
 -- ---------------------------------------------------------------------------
 
 hl.unbind("SUPER + SHIFT + E") -- was: Email webapp
-o.bind("SUPER + SHIFT + E", "File manager", { tui = "yazi" })
+o.bind("SUPER + SHIFT + E", "File manager", { launch = "nautilus" })
 
 o.bind("SUPER + SHIFT + T", "Activity", { tui = "btop" })
 

@@ -1,6 +1,7 @@
 [[track]]
 path = "/home/berni/Music/中文/Coco Elva Tia [JXb04PcA7rg].mp3"
 title = "Coco Elva Tia [JXb04PcA7rg]"
+duration_secs = 206
 
 [[track]]
 path = "/home/berni/Music/中文/Illusionary Daytime (幻奏 Remix) [hATE0C4aQqw].mp3"
@@ -190,6 +191,7 @@ title = "最后一页 [UDyhT-6Idek]"
 [[track]]
 path = "/home/berni/Music/中文/李荣浩Ronghao Li 《不遗憾》【“你的婚礼” 电影主题曲】动态歌词⧸Lyrics Video [n_KHQk1w7Gs].mp3"
 title = "李荣浩Ronghao Li 《不遗憾》【“你的婚礼” 电影主题曲】动态歌词⧸Lyrics Video [n_KHQk1w7Gs]"
+duration_secs = 329
 
 [[track]]
 path = "/home/berni/Music/中文/江美琪 Maggie Chiang - 雙手的溫柔 Gentleness Of Both Hands (官方完整版MV) [RPzYWnJ5RvY].mp3"
@@ -239,6 +241,7 @@ title = "还是会想你 (DJ铁柱版) [lefUZjAUVEI]"
 [[track]]
 path = "/home/berni/Music/中文/遐想 [7r_g40NRA_U].mp3"
 title = "遐想 [7r_g40NRA_U]"
+duration_secs = 189
 
 [[track]]
 path = "/home/berni/Music/中文/遗落 [TnxuPMU9K1Q].mp3"

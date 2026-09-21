@@ -14,13 +14,14 @@ btop
 btrfs-progs
 chromium
 clang
+claude-desktop
 cliamp
 clock-tui
 cups
-cups-browsed
 cups-filters
-cups-pdf
+cups-pk-helper
 ddcutil
+discord
 docker
 docker-buildx
 docker-compose
@@ -76,6 +77,8 @@ jq
 kdenlive
 kernel-modules-hook
 keyd
+kiro-cli
+komikku
 lazydocker
 lazygit
 less
@@ -88,6 +91,8 @@ libyaml
 limine
 linux
 linux-firmware
+linux-omarchy
+linux-omarchy-headers
 llvm
 localsend
 lua51
@@ -133,6 +138,7 @@ qreator
 qrencode
 qt6-imageformats
 quickshell
+readest
 ripgrep
 rnote
 ruby

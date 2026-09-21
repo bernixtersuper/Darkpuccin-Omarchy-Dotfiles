@@ -1,5 +1,6 @@
 clock-tui
 clock-tui-debug
 helium-browser-bin
+kiro-cli
 tuxedo
 zen-browser-bin
