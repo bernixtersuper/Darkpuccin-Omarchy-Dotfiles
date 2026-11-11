@@ -141,14 +141,15 @@ alongside the new transform. Pure Lua — no shell, no jq.
 | `HOME` | Push-to-talk dictation (voxtype), press and release |
 
 Dictation is guarded by `o.cmd_present("voxtype")`, so it no-ops if voxtype isn't installed.
-Omarchy's stock `F9` dictation binding is left alone.
 
-> **`Alt+Space` is reserved by fcitx5** (`[Hotkey/TriggerKeys]` in
-> `~/.config/fcitx5/config`) — it cycles input methods. Omarchy 4.5 made
-> `Alt+Space` the default Superwhisper dictation toggle; neither Superwhisper
-> nor voxtype is installed here as of 2026-11-10 so nothing currently grabs the
-> key, but **never bind `Alt+Space` to anything else** (dictation included) —
-> it would shadow fcitx5 before the keypress reaches the input-method layer.
+> **`Alt+Space` is reserved for fcitx5**, never dictation. It's fcitx5's
+> input-method trigger key (`[Hotkey/TriggerKeys]` in `~/.config/fcitx5/config`).
+> Omarchy's stock `default/hypr/bindings/dictation.lua` binds `ALT + SPACE` to
+> "Toggle dictation" the moment any backend is installed (voxtype, Superwhisper,
+> whatever `omarchy-default-dictation` reports) — there's no F9 fallback, that
+> was stale info from pre-4.5. `bindings.lua` now has an unconditional
+> `hl.unbind("ALT + SPACE")` right after the dictation section specifically to
+> kill this, regardless of what dictation backend is ever installed.
 
 ### Commented out — do not assume these work
 

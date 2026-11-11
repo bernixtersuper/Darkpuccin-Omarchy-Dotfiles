@@ -161,8 +161,14 @@ o.bind("SUPER + SHIFT + bracketright", "Screen rotate right", set_transform("eDP
 -- Dictation
 -- ---------------------------------------------------------------------------
 
--- Push-to-talk on HOME, alongside Omarchy's default F9 binding.
+-- Push-to-talk on HOME, alongside Omarchy's default Right Alt (AltGr) push-to-talk.
 if o.cmd_present("voxtype") then
   o.bind("HOME", "Start dictation", "voxtype record start")
   o.bind("HOME", "Stop dictation", "voxtype record stop", { release = true })
 end
+
+-- ALT+SPACE is fcitx5's input-method trigger key (see ~/.config/fcitx5/config).
+-- Omarchy's stock dictation.lua claims it as a toggle-dictation bind once a
+-- backend (voxtype, Superwhisper, ...) is installed -- unbind it unconditionally
+-- so dictation never shadows fcitx5, no matter what gets installed later.
+hl.unbind("ALT + SPACE")
