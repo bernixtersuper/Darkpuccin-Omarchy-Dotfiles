@@ -4,3 +4,8 @@ eq_preset = "Flat"
 eq = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 shuffle = true
 visualizer = "Wave"
+theme = ""
+
+[ytmusic]
+enabled      = true
+cookies_from = "firefox"

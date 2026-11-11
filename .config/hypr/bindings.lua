@@ -8,7 +8,7 @@
 --   SUPER+SHIFT+N editor, SUPER+SHIFT+O obsidian, SUPER+SHIFT+SLASH passwords,
 --   SUPER+SHIFT+ALT+B private browser, SUPER+SHIFT+A ChatGPT,
 --   SUPER+SHIFT+ALT+A Grok, SUPER+SHIFT+CTRL+G Google Messages,
---   SUPER+SHIFT+ALT+X X post, SUPER+CTRL+W network panel.
+--   SUPER+SHIFT+ALT+X X post.
 
 -- ---------------------------------------------------------------------------
 -- Vim-style focus and window movement
@@ -34,6 +34,7 @@ o.bind("SUPER + SHIFT + L", "Move right", hl.dsp.window.move({ direction = "r" }
 hl.unbind("SUPER + CTRL + K") -- was: Herdr keybindings
 o.bind("SUPER + CTRL + K", "Show key bindings", "omarchy-menu-keybindings")
 o.bind("SUPER + CTRL + J", "Toggle window split", hl.dsp.layout("togglesplit"))
+hl.unbind("SUPER + ALT + L") -- was: previous layout (tiling/scrolling/floating cycle, added in 4.5)
 o.bind("SUPER + ALT + L", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
 
 -- ---------------------------------------------------------------------------
@@ -91,6 +92,7 @@ o.bind("SUPER + ALT + H", "Herdr", { tui = "herdr", focus = true })
 -- its stand-in: same modifiers as the launch bind, plus SHIFT, like the stock
 -- switch/move pairs.
 o.bind("SUPER + SHIFT + ALT + H", "Move window to 🐑", hl.dsp.window.move({ workspace = "name:🐑" }))
+o.bind("SUPER + backslash", "Go to 🐑", hl.dsp.focus({ workspace = "name:🐑" }))
 
 hl.unbind("SUPER + SHIFT + C") -- was: Calendar webapp
 o.bind("SUPER + SHIFT + C", "Chromium", { launch = "chromium" })
@@ -109,6 +111,12 @@ o.bind("SUPER + CTRL + B", "Battery", "omarchy-shell shell toggle omarchy.power"
 
 hl.unbind("SUPER + CTRL + T") -- was: Activity (btop, now on SUPER+SHIFT+T)
 o.bind("SUPER + CTRL + T", "Show time", "omarchy-notification-time")
+
+-- Omarchy 4.5 moved Network off SUPER+CTRL+W onto SUPER+CTRL+N and put the
+-- background switcher on W instead. Keeping Network on W (its pre-4.5 spot);
+-- SUPER+CTRL+N still opens it too.
+hl.unbind("SUPER + CTRL + W") -- was: Background switcher (now only on SUPER+CTRL+SPACE)
+o.bind("SUPER + CTRL + W", "Network", "omarchy-shell shell toggle omarchy.network")
 
 -- ---------------------------------------------------------------------------
 -- Utilities

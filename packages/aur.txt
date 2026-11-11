@@ -1,6 +1,4 @@
 clock-tui
-clock-tui-debug
-helium-browser-bin
 kiro-cli
+steamtinkerlaunch
 tuxedo
-zen-browser-bin

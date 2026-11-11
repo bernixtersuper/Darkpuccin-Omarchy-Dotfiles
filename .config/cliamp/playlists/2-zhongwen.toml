@@ -6,22 +6,26 @@ duration_secs = 206
 [[track]]
 path = "/home/berni/Music/中文/Illusionary Daytime (幻奏 Remix) [hATE0C4aQqw].mp3"
 title = "Illusionary Daytime (幻奏 Remix) [hATE0C4aQqw]"
-duration_secs = 130
 
 [[track]]
 path = "/home/berni/Music/中文/Jumping Machine (跳楼机) [TOC78RUj8pg].mp3"
 title = "Jumping Machine (跳楼机) [TOC78RUj8pg]"
-duration_secs = 201
+
+[[track]]
+path = "/home/berni/Music/中文/LOVE (feat. 鄭潤澤) [h8LIIZz1kWM].mp3"
+title = "LOVE (feat. 鄭潤澤) [h8LIIZz1kWM]"
+
+[[track]]
+path = "/home/berni/Music/中文/Let the rain come down (Affectionate Version) [CvBdVrLrLa8].mp3"
+title = "Let the rain come down (Affectionate Version) [CvBdVrLrLa8]"
 
 [[track]]
 path = "/home/berni/Music/中文/Love Can...... [ldF57rxmRpQ].mp3"
 title = "Love Can...... [ldF57rxmRpQ]"
-duration_secs = 261
 
 [[track]]
 path = "/home/berni/Music/中文/Marry Me Today [6UlVEo7d6HA].mp3"
 title = "Marry Me Today [6UlVEo7d6HA]"
-duration_secs = 272
 
 [[track]]
 path = "/home/berni/Music/中文/No More [EOkzJ6tzP0g].mp3"
@@ -36,8 +40,16 @@ path = "/home/berni/Music/中文/Why Are You With Me, My Love [cZyEv9AlR-k].mp3"
 title = "Why Are You With Me, My Love [cZyEv9AlR-k]"
 
 [[track]]
+path = "/home/berni/Music/中文/Wo De Ai Mei Qian Zou [bYT72XJ6ZrY].mp3"
+title = "Wo De Ai Mei Qian Zou [bYT72XJ6ZrY]"
+
+[[track]]
 path = "/home/berni/Music/中文/Wo Ke Yi [Poy4AhZLIWo].mp3"
 title = "Wo Ke Yi [Poy4AhZLIWo]"
+
+[[track]]
+path = "/home/berni/Music/中文/一个人也挺好 [b96ynMHUZzU].mp3"
+title = "一个人也挺好 [b96ynMHUZzU]"
 
 [[track]]
 path = "/home/berni/Music/中文/一点点 (DJ版) [Ke-xD5_3tGY].mp3"
@@ -46,6 +58,10 @@ title = "一点点 (DJ版) [Ke-xD5_3tGY]"
 [[track]]
 path = "/home/berni/Music/中文/一点点（为什么晚上总是有星星） [s6Yc9yc7emA].mp3"
 title = "一点点（为什么晚上总是有星星） [s6Yc9yc7emA]"
+
+[[track]]
+path = "/home/berni/Music/中文/不再分離 [X2zzAvStf2k].mp3"
+title = "不再分離 [X2zzAvStf2k]"
 
 [[track]]
 path = "/home/berni/Music/中文/不醉不會 [ohoeAKGx9SE].mp3"
@@ -58,7 +74,6 @@ title = "人间天堂 [kJBjldub6x4]"
 [[track]]
 path = "/home/berni/Music/中文/代替 [LjmlteROZHk].mp3"
 title = "代替 [LjmlteROZHk]"
-duration_secs = 234
 
 [[track]]
 path = "/home/berni/Music/中文/任夏 - 算了吧『當別人問起想你嗎會後悔吧，我的眼淚還是會落下。』【動態歌詞 ｜ Pinyin Lyrics】【PENGUIN MUSIC】 [IGFOHxOJK34].mp3"
@@ -74,12 +89,29 @@ path = "/home/berni/Music/中文/你的影子 [hVcmVl9b2Xg].mp3"
 title = "你的影子 [hVcmVl9b2Xg]"
 
 [[track]]
+path = "/home/berni/Music/中文/假装快乐 (1.2加速版) [nTdmNy-_bYI].mp3"
+title = "假装快乐 (1.2加速版) [nTdmNy-_bYI]"
+
+[[track]]
 path = "/home/berni/Music/中文/傷心的人別聽慢歌 [abz1pNrClkM].mp3"
 title = "傷心的人別聽慢歌 [abz1pNrClkM]"
 
 [[track]]
+path = "/home/berni/Music/中文/兜兜转转 [y8l0RO2wqbY].mp3"
+title = "兜兜转转 [y8l0RO2wqbY]"
+duration_secs = 190
+
+[[track]]
 path = "/home/berni/Music/中文/其实 [TWHy8Iw6aiI].mp3"
 title = "其实 [TWHy8Iw6aiI]"
+
+[[track]]
+path = "/home/berni/Music/中文/冬眠·2023 [Ni-iTOQriMY].mp3"
+title = "冬眠·2023 [Ni-iTOQriMY]"
+
+[[track]]
+path = "/home/berni/Music/中文/刀背 [hQfTJ7rHnjY].mp3"
+title = "刀背 [hQfTJ7rHnjY]"
 
 [[track]]
 path = "/home/berni/Music/中文/加油卡(Swipe That Gas) [A2ZCJi9chjw].mp3"
@@ -103,6 +135,10 @@ path = "/home/berni/Music/中文/因果(Karma Code) [eVHhVuIYT6k].mp3"
 title = "因果(Karma Code) [eVHhVuIYT6k]"
 
 [[track]]
+path = "/home/berni/Music/中文/在你心中那毫不起眼模糊界限的 [CvNWn0yN4Ck].mp3"
+title = "在你心中那毫不起眼模糊界限的 [CvNWn0yN4Ck]"
+
+[[track]]
 path = "/home/berni/Music/中文/在眼前 [J4L05tNopEI].mp3"
 title = "在眼前 [J4L05tNopEI]"
 
@@ -119,12 +155,25 @@ path = "/home/berni/Music/中文/大眠 [SW3ZPpysn0o].mp3"
 title = "大眠 [SW3ZPpysn0o]"
 
 [[track]]
+path = "/home/berni/Music/中文/天是灰白色 [nDs7ofOypNc].mp3"
+title = "天是灰白色 [nDs7ofOypNc]"
+
+[[track]]
 path = "/home/berni/Music/中文/天若有情 [WYUnRcE2CsY].mp3"
 title = "天若有情 [WYUnRcE2CsY]"
 
 [[track]]
+path = "/home/berni/Music/中文/失落盛行 [dgH072opbEo].mp3"
+title = "失落盛行 [dgH072opbEo]"
+
+[[track]]
 path = "/home/berni/Music/中文/如果可以·2023 [xaz5yYea4ys].mp3"
 title = "如果可以·2023 [xaz5yYea4ys]"
+duration_secs = 224
+
+[[track]]
+path = "/home/berni/Music/中文/如果这份爱 [IKSh2Adk14k].mp3"
+title = "如果这份爱 [IKSh2Adk14k]"
 
 [[track]]
 path = "/home/berni/Music/中文/字字句句 [C5CvN3EmOB4].mp3"
@@ -156,6 +205,10 @@ title = "室內系的TrackMaker「高峰期的街上 堆滿車子 長長的一�
 artist = "張快玉"
 
 [[track]]
+path = "/home/berni/Music/中文/很久之后 [aOxMb-BIurY].mp3"
+title = "很久之后 [aOxMb-BIurY]"
+
+[[track]]
 path = "/home/berni/Music/中文/心跳 [1kUYKhbpTRc].mp3"
 title = "心跳 [1kUYKhbpTRc]"
 
@@ -172,6 +225,22 @@ path = "/home/berni/Music/中文/愛我別走 [b4dlmN7k8-Y].mp3"
 title = "愛我別走 [b4dlmN7k8-Y]"
 
 [[track]]
+path = "/home/berni/Music/中文/我们啊 [9-zM0w9-KSs].mp3"
+title = "我们啊 [9-zM0w9-KSs]"
+
+[[track]]
+path = "/home/berni/Music/中文/我会明白 [nmecBZkEu1I].mp3"
+title = "我会明白 [nmecBZkEu1I]"
+
+[[track]]
+path = "/home/berni/Music/中文/我才懂爱 [aqkZYguM0ho].mp3"
+title = "我才懂爱 [aqkZYguM0ho]"
+
+[[track]]
+path = "/home/berni/Music/中文/所以爱 [Xn13qbeQbEg].mp3"
+title = "所以爱 [Xn13qbeQbEg]"
+
+[[track]]
 path = "/home/berni/Music/中文/是想你的声音啊 (DJ版) [nvHH-0rnLyI].mp3"
 title = "是想你的声音啊 (DJ版) [nvHH-0rnLyI]"
 
@@ -182,16 +251,23 @@ title = "是想你的声音啊 [0oNSHSRZNS0]"
 [[track]]
 path = "/home/berni/Music/中文/最初的记忆·2023 [_mSoIdx30qc].mp3"
 title = "最初的记忆·2023 [_mSoIdx30qc]"
-duration_secs = 199
 
 [[track]]
 path = "/home/berni/Music/中文/最后一页 [UDyhT-6Idek].mp3"
 title = "最后一页 [UDyhT-6Idek]"
 
 [[track]]
+path = "/home/berni/Music/中文/月光不答 [AQHtCm_sRHw].mp3"
+title = "月光不答 [AQHtCm_sRHw]"
+
+[[track]]
 path = "/home/berni/Music/中文/李荣浩Ronghao Li 《不遗憾》【“你的婚礼” 电影主题曲】动态歌词⧸Lyrics Video [n_KHQk1w7Gs].mp3"
 title = "李荣浩Ronghao Li 《不遗憾》【“你的婚礼” 电影主题曲】动态歌词⧸Lyrics Video [n_KHQk1w7Gs]"
-duration_secs = 329
+
+[[track]]
+path = "/home/berni/Music/中文/杨丞琳 - 雨爱 dj降调 [9JdiXuEuvS0].mp3"
+title = "雨爱 dj降调 [9JdiXuEuvS0]"
+artist = "杨丞琳"
 
 [[track]]
 path = "/home/berni/Music/中文/江美琪 Maggie Chiang - 雙手的溫柔 Gentleness Of Both Hands (官方完整版MV) [RPzYWnJ5RvY].mp3"
@@ -207,12 +283,20 @@ path = "/home/berni/Music/中文/渐冷 [rZCTXNioPOk].mp3"
 title = "渐冷 [rZCTXNioPOk]"
 
 [[track]]
+path = "/home/berni/Music/中文/烂片剧情 [n49Zi0fIGlA].mp3"
+title = "烂片剧情 [n49Zi0fIGlA]"
+
+[[track]]
 path = "/home/berni/Music/中文/爱随你飞而我追 [dbn3QOPXtsk].mp3"
 title = "爱随你飞而我追 [dbn3QOPXtsk]"
 
 [[track]]
 path = "/home/berni/Music/中文/真的没喝多 [__hmZ1KxcMs].mp3"
 title = "真的没喝多 [__hmZ1KxcMs]"
+
+[[track]]
+path = "/home/berni/Music/中文/瞬 [eZJ6EiRoOWo].mp3"
+title = "瞬 [eZJ6EiRoOWo]"
 
 [[track]]
 path = "/home/berni/Music/中文/私奔到月球 [JsOQLET3Z4k].mp3"
@@ -227,8 +311,20 @@ path = "/home/berni/Music/中文/红昭愿 (DJ于成龙) [PcwFG1Mrme4].mp3"
 title = "红昭愿 (DJ于成龙) [PcwFG1Mrme4]"
 
 [[track]]
+path = "/home/berni/Music/中文/绽放 [jk03v_LWi1k].mp3"
+title = "绽放 [jk03v_LWi1k]"
+
+[[track]]
 path = "/home/berni/Music/中文/蔡健雅-紅色高跟鞋『你像窝在被子里的舒服』【動態歌詞Lyrics】 [ATblV50Odx8].mp3"
 title = "蔡健雅-紅色高跟鞋『你像窝在被子里的舒服』【動態歌詞Lyrics】 [ATblV50Odx8]"
+
+[[track]]
+path = "/home/berni/Music/中文/說了再見 [Wlwk9osZ9Mc].mp3"
+title = "說了再見 [Wlwk9osZ9Mc]"
+
+[[track]]
+path = "/home/berni/Music/中文/謝幕時分 [SkLfUiaooRI].mp3"
+title = "謝幕時分 [SkLfUiaooRI]"
 
 [[track]]
 path = "/home/berni/Music/中文/起风了 [CKs06juUk6E].mp3"
@@ -241,7 +337,6 @@ title = "还是会想你 (DJ铁柱版) [lefUZjAUVEI]"
 [[track]]
 path = "/home/berni/Music/中文/遐想 [7r_g40NRA_U].mp3"
 title = "遐想 [7r_g40NRA_U]"
-duration_secs = 189
 
 [[track]]
 path = "/home/berni/Music/中文/遗落 [TnxuPMU9K1Q].mp3"
@@ -256,8 +351,16 @@ path = "/home/berni/Music/中文/错季 [e6fMs-6HY-s].mp3"
 title = "错季 [e6fMs-6HY-s]"
 
 [[track]]
+path = "/home/berni/Music/中文/防弹衣 [qrmTKe5lGeE].mp3"
+title = "防弹衣 [qrmTKe5lGeE]"
+
+[[track]]
 path = "/home/berni/Music/中文/雪二 《漸冷》｜ cover 高芸歆 ｜ MxA Music [D2Vpm7WKn5A].mp3"
 title = "雪二 《漸冷》｜ cover 高芸歆 ｜ MxA Music [D2Vpm7WKn5A]"
+
+[[track]]
+path = "/home/berni/Music/中文/雪夜 [PiuZXcPWMC0].mp3"
+title = "雪夜 [PiuZXcPWMC0]"
 
 [[track]]
 path = "/home/berni/Music/中文/雪藏 (加速版) [W_cvcGjf-D8].mp3"

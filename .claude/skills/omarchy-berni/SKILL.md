@@ -68,6 +68,12 @@ keybindings menu, and workspace-layout). Their replacements:
 | `SUPER CTRL K` | Show keybindings menu |
 | `SUPER ALT L` | Toggle workspace layout |
 
+> Omarchy 4.5 added a native `SUPER ALT L` bind (previous layout in the
+> tiling/scrolling/floating cycle) that collides with the one above —
+> `hl.unbind("SUPER + ALT + L")` runs right before the custom `o.bind()` in
+> `bindings.lua` to kill it. Check `hyprctl binds` for duplicate modmask 72 + `L`
+> entries after any future Omarchy update that touches `SUPER ALT L`.
+
 ### Workspaces (GlazeWM style)
 
 | Key | Action |
@@ -97,10 +103,12 @@ dropped deliberately), `SUPER SHIFT S` (Google Maps), `SUPER SHIFT A` (ChatGPT).
 | `SUPER SHIFT C` | Chromium | Calendar webapp |
 | `SUPER ALT H` | herdr (launch-or-focus, pinned to `🐑`) | — |
 | `SUPER SHIFT ALT H` | Move window to `🐑` workspace | — |
+| `SUPER \` | Go to `🐑` workspace (focus only, no launch) | — |
 
 `{ tui = "x" }` opens in a terminal; `focus = true` focuses an existing window instead of
 launching a second copy. `🐑` has no digit, so `SUPER SHIFT <n>` can't reach it — hence the
-dedicated move bind.
+dedicated move bind, and `SUPER \` (`hl.dsp.focus({ workspace = "name:🐑" })`) for switching
+to it directly without touching window state.
 
 ### Hardware panels & notifications
 
@@ -134,6 +142,13 @@ alongside the new transform. Pure Lua — no shell, no jq.
 
 Dictation is guarded by `o.cmd_present("voxtype")`, so it no-ops if voxtype isn't installed.
 Omarchy's stock `F9` dictation binding is left alone.
+
+> **`Alt+Space` is reserved by fcitx5** (`[Hotkey/TriggerKeys]` in
+> `~/.config/fcitx5/config`) — it cycles input methods. Omarchy 4.5 made
+> `Alt+Space` the default Superwhisper dictation toggle; neither Superwhisper
+> nor voxtype is installed here as of 2026-11-10 so nothing currently grabs the
+> key, but **never bind `Alt+Space` to anything else** (dictation included) —
+> it would shadow fcitx5 before the keypress reaches the input-method layer.
 
 ### Commented out — do not assume these work
 

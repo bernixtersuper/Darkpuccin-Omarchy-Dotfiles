@@ -1,14 +1,60 @@
 {
-  "version": 1,
-  "idle": {
-    "screensaver": 150,
-    "lock": 300
-  },
   "bar": {
-    "position": "bottom",
-    "transparent": false,
+    "background": "glassy",
     "centerAnchor": "berni.clock",
+    "id": "berni.bar",
     "layout": {
+      "center": [
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "format": "(ddd) MM月dd日 HH:mm:ss",
+          "formatAlt": "yyyy年MM月dd日 (ddd)",
+          "formats": [
+            "(ddd) MM月dd日 HH:mm:ss",
+            "(ddd) MM月dd日 HH:mm",
+            "HH:mm:ss",
+            "MM月dd日(ddd)"
+          ],
+          "id": "berni.clock",
+          "locale": "ja_JP",
+          "verticalFormat": "HH\n—\nmm"
+        },
+        {
+          "id": "omarchy.elsewhen",
+          "cities": [
+            {
+              "name": "Buenos Aires",
+              "zone": "America/Buenos_Aires"
+            },
+            {
+              "name": "London",
+              "zone": "Europe/London"
+            },
+            {
+              "name": "Dubai",
+              "zone": "Asia/Dubai"
+            },
+            {
+              "name": "Tokyo",
+              "zone": "Asia/Tokyo"
+            },
+            {
+              "name": "Los Angeles",
+              "zone": "America/Los_Angeles"
+            }
+          ]
+        },
+        {
+          "id": "omarchy.weather"
+        }
+      ],
+      "centerBegin": [],
+      "centerEnd": [],
       "left": [
         {
           "id": "berni.workspaces"
@@ -17,34 +63,10 @@
           "id": "berni.active-window"
         }
       ],
-      "center": [
+      "right": [
         {
           "id": "omarchy.keyboard-layout"
         },
-        {
-          "id": "omarchy.system-update"
-        },
-        {
-          "id": "omarchy.indicators"
-        },
-        {
-          "id": "berni.clock",
-          "format": "(ddd) MM月dd日 HH:mm:ss",
-          "formatAlt": "yyyy年MM月dd日 (ddd)",
-          "verticalFormat": "HH\n—\nmm",
-          "locale": "ja_JP",
-          "formats": [
-            "(ddd) MM月dd日 HH:mm:ss",
-            "(ddd) MM月dd日 HH:mm",
-            "HH:mm:ss",
-            "MM月dd日(ddd)"
-          ]
-        },
-        {
-          "id": "omarchy.weather"
-        }
-      ],
-      "right": [
         {
           "id": "omarchy.tray"
         },
@@ -67,11 +89,23 @@
           "id": "omarchy.monitor"
         },
         {
-          "id": "omarchy.power"
+          "id": "berni.power",
+          "showPercentage": true
+        }
+      ],
+      "tray": [
+        {
+          "id": "superwhisper.panel"
         }
       ]
     },
-    "id": "berni.bar"
+    "position": "bottom",
+    "transparent": false
   },
-  "plugins": []
+  "idle": {
+    "lock": 300,
+    "screensaver": 150
+  },
+  "plugins": [],
+  "version": 1
 }

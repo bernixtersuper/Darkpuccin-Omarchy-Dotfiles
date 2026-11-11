@@ -50,6 +50,7 @@ description: Manage Bernardo's Arch Linux home server at 192.168.1.8 (Tailscale 
 | Service | Port | Access | Status |
 |---------|------|--------|--------|
 | Jellyfin | 8096 | `http://192.168.1.8:8096` | Docker — port open |
+| Komga | 25600 | `http://192.168.1.8:25600` | Docker — port open, verified 2026-11-10 |
 | qBittorrent | 8080 | `http://192.168.1.8:8080` | systemd — port open |
 | Samba | 445 | `smb://192.168.1.8/media` | systemd — guest login verified |
 | SSH | 22 | `ssh homeserver` | systemd — port open |
@@ -96,13 +97,32 @@ services:
       - /srv/media:/media
 ```
 
+Compose file: `/root/komga/docker-compose.yml`
+
+```yaml
+services:
+  komga:
+    image: gotson/komga:latest
+    container_name: komga
+    restart: unless-stopped
+    ports:
+      - 25600:25600
+    volumes:
+      - ./config:/config
+      - /srv/media/manga:/media/manga
+      - /srv/media/books:/media/books
+    environment:
+      - KOMGA_SERVER_PORT=25600
+```
+
 ### Common Docker Commands
 ```bash
-cd /root/jellyfin
+cd /root/jellyfin  # or /root/komga
 docker compose up -d       # start
 docker compose down        # stop
 docker compose logs -f     # logs
 docker exec jellyfin ls /media  # verify mounts
+docker exec komga ls /media     # verify Komga mounts
 ```
 
 ## Samba Config

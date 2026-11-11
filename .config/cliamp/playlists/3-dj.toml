@@ -1,6 +1,7 @@
 [[track]]
 path = "/home/berni/Music/dj/All Eyes On Me [9HeiBJ5mgtA].mp3"
 title = "All Eyes On Me [9HeiBJ5mgtA]"
+duration_secs = 244
 
 [[track]]
 path = "/home/berni/Music/dj/Bricks [tP_J1i2J-2g].mp3"
@@ -80,6 +81,10 @@ path = "/home/berni/Music/dj/Rockets (franck Remix) [7RsNByK57ZM].mp3"
 title = "Rockets (franck Remix) [7RsNByK57ZM]"
 
 [[track]]
+path = "/home/berni/Music/dj/SUPER BOUNCY HEAT [S6yCjzq_HUQ].mp3"
+title = "SUPER BOUNCY HEAT [S6yCjzq_HUQ]"
+
+[[track]]
 path = "/home/berni/Music/dj/Side To Side [80vmI5raDS0].mp3"
 title = "Side To Side [80vmI5raDS0]"
 
@@ -106,3 +111,7 @@ title = "Winds (Feel for You) [IfUK0lo7nrI]"
 [[track]]
 path = "/home/berni/Music/dj/ÜBERHOLSPUR [_tfdPPEDinM].mp3"
 title = "ÜBERHOLSPUR [_tfdPPEDinM]"
+
+[[track]]
+path = "/home/berni/Music/dj/ЗАВОД [hssSTXMcyBQ].mp3"
+title = "ЗАВОД [hssSTXMcyBQ]"

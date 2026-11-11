@@ -1,5 +1,9 @@
 {
-  "model": "haiku",
+  "permissions": {
+    "allow": [
+      "Bash(agent-browser:*)"
+    ]
+  },
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",

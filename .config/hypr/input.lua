@@ -39,7 +39,7 @@ hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
 local TABLET = "wacom-intuos-pt-s-2-pen"
 
 local function map_tablet()
-  if hl.get_monitor("HDMI-A-1") then
+  if hl.get_monitor("HDMI-A-17") then
     -- MSI MAG 275QF is 2560x1440 (16:9), so map only the bottom-left 1920x1200
     -- of it. That region is 16:10 like the tablet, which keeps circles round;
     -- using the whole panel would squash the vertical axis by ~10%.

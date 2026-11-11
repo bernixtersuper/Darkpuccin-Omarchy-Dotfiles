@@ -20,12 +20,12 @@ x-scheme-handler/readest-onedrive=readest-handler.desktop
 x-scheme-handler/com.googleusercontent.apps.209390247301-ctpmep68ppfa56r1b8tr35e4qi4p60kq=readest-handler.desktop
 text/markdown=omawrite.desktop
 x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/superwhisper=superwhisper-url.desktop
 
 [Added Associations]
 application/pdf=zen.desktop;
-x-scheme-handler/http=zen.desktop;
-x-scheme-handler/https=zen.desktop;
-text/html=zen.desktop;
 image/svg+xml=imv-dir.desktop;
 text/markdown=omawrite.desktop;
+x-scheme-handler/http=zen.desktop;
+x-scheme-handler/https=zen.desktop;
 x-scheme-handler/chrome=zen.desktop;
