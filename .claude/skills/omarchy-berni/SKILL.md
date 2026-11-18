@@ -117,6 +117,7 @@ to it directly without touching window state.
 | `SUPER B` | Bluetooth panel | — |
 | `SUPER CTRL B` | Battery/power panel | Bluetooth (moved to `SUPER B`) |
 | `SUPER CTRL T` | Show time notification | btop (moved to `SUPER SHIFT T`) |
+| `SUPER CTRL N` | Toggle night light (`omarchy-toggle-nightlight`) | stock Network (Network stays on `SUPER CTRL W`) |
 
 `SUPER CTRL P` (stock) also opens the power panel — both keys work.
 

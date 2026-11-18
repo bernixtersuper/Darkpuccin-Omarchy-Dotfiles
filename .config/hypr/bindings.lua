@@ -113,10 +113,14 @@ hl.unbind("SUPER + CTRL + T") -- was: Activity (btop, now on SUPER+SHIFT+T)
 o.bind("SUPER + CTRL + T", "Show time", "omarchy-notification-time")
 
 -- Omarchy 4.5 moved Network off SUPER+CTRL+W onto SUPER+CTRL+N and put the
--- background switcher on W instead. Keeping Network on W (its pre-4.5 spot);
--- SUPER+CTRL+N still opens it too.
+-- background switcher on W instead. Keeping Network on W (its pre-4.5 spot).
 hl.unbind("SUPER + CTRL + W") -- was: Background switcher (now only on SUPER+CTRL+SPACE)
 o.bind("SUPER + CTRL + W", "Network", "omarchy-shell shell toggle omarchy.network")
+
+-- SUPER+CTRL+N frees up from its stock Network duty (Network stays on
+-- SUPER+CTRL+W above) and becomes the night light toggle instead.
+hl.unbind("SUPER + CTRL + N") -- was: Network (now only on SUPER+CTRL+W)
+o.bind("SUPER + CTRL + N", "Toggle night light", "omarchy-toggle-nightlight")
 
 -- ---------------------------------------------------------------------------
 -- Utilities

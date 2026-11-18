@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Io
 import qs.Commons
 import qs.Ui
 
@@ -8,45 +10,110 @@ BarWidget {
   id: root
   moduleName: "omarchy.workspaces"
 
+  // Every monitor owns a block of ten global workspace ids (1-10, 11-20, ...;
+  // see default/hypr/monitor-workspaces.lua). This bar shows ITS OWN monitor's
+  // block, numbered 1-10/0 like a keyboard row, and highlights whichever slot
+  // that monitor itself is showing -- not whatever is focused elsewhere.
+  readonly property int slots: 10
+
+  readonly property var monitor: {
+    var window = root.QsWindow.window
+    var screen = window ? window.screen : null
+    return screen ? Hyprland.monitorFor(screen) : Hyprland.focusedMonitor
+  }
+  readonly property string monitorName: root.monitor ? root.monitor.name : ""
+
+  // Connector -> block, from the file Hyprland keeps them in (keyed by
+  // physical monitor identity, so a block survives unplug/replug).
+  property var blocks: ({})
+
+  function readBlocks(text) {
+    var next = {}
+    var lines = String(text || "").split("\n")
+    for (var i = 0; i < lines.length; i++) {
+      var fields = lines[i].split("\t")
+      if (fields.length >= 3 && fields[1] !== "") next[fields[1]] = parseInt(fields[0], 10)
+    }
+    root.blocks = next
+  }
+
+  FileView {
+    path: (Quickshell.env("XDG_STATE_HOME") || Quickshell.env("HOME") + "/.local/state") + "/omarchy/monitor-workspaces"
+    watchChanges: true
+    printErrors: false
+    onFileChanged: reload()
+    onLoaded: root.readBlocks(text())
+    onLoadFailed: root.readBlocks("")
+  }
+
+  function blockOf(id) {
+    return Math.floor((id - 1) / root.slots)
+  }
+
+  function activeWorkspaceId() {
+    return root.monitor && root.monitor.activeWorkspace ? root.monitor.activeWorkspace.id : -1
+  }
+
+  // Until Hyprland has written the file, fall back to the block the
+  // currently-shown workspace already belongs to.
+  readonly property int block: {
+    var block = root.blocks[root.monitorName]
+    if (block !== undefined) return block
+    var active = root.activeWorkspaceId()
+    return active > 0 ? root.blockOf(active) : 0
+  }
+
+  function workspaceById(id) {
+    if (id === null) return null
+    var values = Hyprland.workspaces.values
+    for (var i = 0; i < values.length; i++) {
+      if (values[i].id === id) return values[i]
+    }
+    return null
+  }
+
   function workspaceByName(name) {
     var values = Hyprland.workspaces.values
     for (var i = 0; i < values.length; i++) {
       if (values[i].name === name) return values[i]
     }
-
     return null
   }
 
-  // All ten workspaces, always. Stock showed 1-5 plus whatever was occupied,
-  // which meant switching to an empty 6-9 had to CREATE a button: the
-  // GridLayout's `columns` changed, every sibling reflowed, and the new button
-  // faded in through WidgetButton's 140ms `Behavior on opacity`. That read as
-  // lag, and only on 6-9 -- exactly the workspaces not already on the bar.
-  //
-  // A fixed list keeps `columns` constant, so a switch only moves the
-  // highlight: no button construction, no reflow, no fade. Unused workspaces
-  // are still dimmed via the label's alpha, the way waybar's
-  // persistent-workspaces behaved.
-  //
-  // Slots are keyed by Hyprland's workspace *name*, not its id: the named
-  // workspace herdr lives on (see ~/.config/hypr/workspaces.lua) is handed an
-  // arbitrary negative id by the compositor -- -1337 here -- so an id-keyed
-  // lookup can never match it. Names are stable ("1".."10", "🐑") and are also
-  // what `hl.dsp.focus` takes, once the named one is prefixed with `name:`.
+  // All ten slots of THIS monitor's own block, always -- see the sizing note
+  // below. Labelled 1-9 then 0 like a keyboard row. The sheep keeps its own
+  // entry: it lives outside the block scheme on a fixed negative id (see
+  // ~/.config/hypr/workspaces.lua), so it's resolved by name instead.
   function workspaceSlots() {
-    var slots = []
-    for (var i = 1; i <= 10; i++) {
-      slots.push({ name: String(i), label: String(i), target: String(i) })
+    var base = root.block * root.slots
+    var out = []
+    for (var i = 1; i <= root.slots; i++) {
+      out.push({ id: base + i, slot: i, label: String(i === root.slots ? 0 : i), sheep: false })
     }
-    slots.push({ name: "🐑", label: "🐑", target: "name:🐑" })
-    return slots
+    var sheep = root.workspaceByName("🐑")
+    out.push({ id: sheep ? sheep.id : null, slot: 0, label: "🐑", sheep: true })
+    return out
   }
 
-  function focusWorkspace(target) {
+  // A slot's own block goes through the per-monitor dispatcher with this
+  // monitor named explicitly, so a click always targets the monitor the
+  // button is drawn on -- never whichever monitor last had focus or the mouse
+  // happens to be sitting over. The sheep has no slot, just its name.
+  function focusWorkspace(entry) {
     if (!root.bar) return
-    root.bar.run("hyprctl dispatch " + Util.shellQuote("hl.dsp.focus({ workspace = \"" + target + "\" })"))
+    var expression = entry.sheep
+      ? "hl.dsp.focus({ workspace = \"name:🐑\" })"
+      : "o.workspaces.focus(" + entry.slot + ", \"" + root.monitorName + "\")"
+    root.bar.run("hyprctl dispatch " + Util.shellQuote(expression))
   }
 
+  // Keeping a fixed-length model (ten slots, always) rather than only the
+  // occupied ones avoids a layout bug: a dynamic list changes `columns` on
+  // every switch to a workspace not already shown, which reflows every
+  // sibling and fades the new button in through WidgetButton's 140ms
+  // `Behavior on opacity`. A fixed list keeps `columns` constant, so a switch
+  // only moves the highlight. Unused workspaces are dimmed via the label's
+  // alpha instead, the way waybar's persistent-workspaces behaved.
   readonly property real trailingGap: root.vertical ? 0 : Style.spaceReal(1.5)
 
   // The focused workspace is marked in Hyprland's active border colour rather
@@ -65,6 +132,22 @@ BarWidget {
   implicitWidth: grid.implicitWidth + trailingGap
   implicitHeight: grid.implicitHeight
 
+  Connections {
+    target: Hyprland
+    function onRawEvent(event) {
+      var name = event ? String(event.name) : ""
+      // Quickshell credits every workspace switch to the focused monitor, as
+      // the event doesn't say which one switched, and misses the workspace a
+      // monitor falls back to when its own is moved away. Moving workspaces
+      // between monitors switches the others too. Every bar shares what
+      // Hyprland answers, so one asks after any of these.
+      if (name === "workspacev2" || name === "moveworkspacev2" || name === "changeworkspaceid" || name === "configreloaded") {
+        Hyprland.refreshMonitors()
+        Hyprland.refreshWorkspaces()
+      }
+    }
+  }
+
   GridLayout {
     id: grid
     anchors.fill: parent
@@ -79,9 +162,10 @@ BarWidget {
       WidgetButton {
         required property var modelData
 
-        readonly property var workspace: root.workspaceByName(modelData.name)
+        readonly property var workspace: root.workspaceById(modelData.id)
         readonly property bool occupied: workspace !== null && workspace.toplevels.values.length > 0
-        readonly property bool focused: Hyprland.focusedWorkspace !== null && Hyprland.focusedWorkspace.name === modelData.name
+        readonly property bool focused: root.monitor !== null && root.monitor.activeWorkspace !== null
+                                         && modelData.id !== null && root.monitor.activeWorkspace.id === modelData.id
 
         bar: root.bar
 
@@ -108,7 +192,7 @@ BarWidget {
         verticalPadding: 6
         fixedWidth: root.vertical ? root.barSize : Style.space(20)
         fixedHeight: root.barSize
-        onPressed: function() { root.focusWorkspace(modelData.target) }
+        onPressed: function() { root.focusWorkspace(modelData) }
 
         // Unanimated stand-in for WidgetButton's label. Focused digit takes the
         // theme accent so it matches the underline (waybar drew that border in
@@ -125,7 +209,7 @@ BarWidget {
           // NativeRendering keeps the digits crisp, but it rasterises through a
           // path that drops the colour layers of an emoji font, so the sheep
           // would come out as a grey glyph. Only that slot pays the switch.
-          renderType: parent.modelData.name === "🐑" ? Text.QtRendering : Text.NativeRendering
+          renderType: parent.modelData.sheep ? Text.QtRendering : Text.NativeRendering
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
         }

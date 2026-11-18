@@ -1,4 +1,7 @@
 clock-tui
+http-parser
+http-parser-debug
 kiro-cli
 steamtinkerlaunch
 tuxedo
+yomininja-e

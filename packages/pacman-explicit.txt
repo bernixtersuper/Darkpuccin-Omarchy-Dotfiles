@@ -65,6 +65,7 @@ gvfs-nfs
 gvfs-smb
 helium-browser-bin
 herdr
+http-parser
 hype
 hyprland
 hyprland-guiutils
@@ -205,6 +206,7 @@ xournalpp
 yaru-icon-theme
 yay
 yazi
+yomininja-e
 yt-dlp
 zbar
 zen-browser-bin
