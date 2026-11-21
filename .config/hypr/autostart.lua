@@ -15,3 +15,9 @@ o.exec_on_start("hyprctl setcursor breeze-dark 30")
 
 -- ThinkPad hardware bluetooth switch sometimes comes up soft-blocked.
 o.exec_on_start("rfkill unblock bluetooth")
+
+-- Experimental: pre-bind the B&W filter shader once at login then clear it,
+-- in case Hyprland caches the compiled shader by path -- see
+-- scripts/warm-bw-filter.sh. Meant to hide the stutter reported when
+-- SUPER+CTRL+M first turns the shader on during a session.
+o.exec_on_start(os.getenv("HOME") .. "/.config/hypr/scripts/warm-bw-filter.sh")

@@ -119,8 +119,17 @@ o.bind("SUPER + CTRL + W", "Network", "omarchy-shell shell toggle omarchy.networ
 
 -- SUPER+CTRL+N frees up from its stock Network duty (Network stays on
 -- SUPER+CTRL+W above) and becomes the night light toggle instead.
+--
+-- Uses our own script rather than the stock omarchy-toggle-nightlight binary:
+-- it snaps to the last warmth set via the nightlight gauge's slider (see
+-- berni.nightlight-gauge) instead of a hardcoded temperature, and clears the
+-- B&W filter below if it's active so the two never stack.
 hl.unbind("SUPER + CTRL + N") -- was: Network (now only on SUPER+CTRL+W)
-o.bind("SUPER + CTRL + N", "Toggle night light", "omarchy-toggle-nightlight")
+o.bind(
+  "SUPER + CTRL + N",
+  "Toggle night light",
+  os.getenv("HOME") .. "/.config/hypr/scripts/toggle-nightlight-warmth.sh"
+)
 
 -- ---------------------------------------------------------------------------
 -- Utilities
@@ -129,8 +138,15 @@ o.bind("SUPER + CTRL + N", "Toggle night light", "omarchy-toggle-nightlight")
 o.bind("SUPER + ALT + V", "Fix clipboard newlines", [[wl-paste | perl -0pe 's/(?<!\n)\n(?!\n)/ /g' | wl-copy]])
 
 -- SUPER+CTRL+M used to run ~/.config/hypr/scripts/toggle-edge-scroll.sh, which
--- is missing from the dotfiles repo. Restore the script, then uncomment.
--- o.bind("SUPER + CTRL + M", "Toggle edge scrolling", os.getenv("HOME") .. "/.config/hypr/scripts/toggle-edge-scroll.sh")
+-- was missing from the dotfiles repo and never worked. Repurposed as the
+-- whole-screen B&W (grayscale) filter toggle; see nightlight-common.sh for
+-- why it also suppresses/restores Night Light so the two don't stack into a
+-- sepia-tinted grayscale.
+o.bind(
+  "SUPER + CTRL + M",
+  "Toggle B&W filter",
+  os.getenv("HOME") .. "/.config/hypr/scripts/toggle-bw-filter.sh"
+)
 
 -- ---------------------------------------------------------------------------
 -- Screen rotation

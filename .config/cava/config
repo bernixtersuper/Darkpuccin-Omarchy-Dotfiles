@@ -1,23 +1,20 @@
 ## Configuration file for CAVA.
-# Remove the ; to change parameters.
 
+# Lines starting with ; show config parameters and default values.
+# Remove the ; to change parameters.
 
 [general]
 
 # Auto reload config if the configuration file has changed. 1 = on, 0 = off.
 ; live-config = 0
 
-# Smoothing mode. Can be 'normal', 'scientific' or 'waves'. DEPRECATED as of 0.6.0
-; mode = normal
-
 # Accepts only non-negative values.
 ; framerate = 60
 
-# 'autosens' will attempt to decrease sensitivity if the bars peak. 1 = on, 0 = off
-# new as of 0.6.0 autosens of low values (dynamic range)
-# 'overshoot' allows bars to overshoot (in % of terminal height) without initiating autosens. DEPRECATED as of 0.6.0
+# 'autosens' will attempt to decrease sensitivity if the bars peak and increase slowly as
+# long as the bars don't peak. 0 = off, 1 = normal, 2..n = more aggressive.
+# increase to make sensitivity increase even faster.
 ; autosens = 1
-; overshoot = 20
 
 # Manual sensitivity in %. If autosens is enabled, this will only be the initial value.
 # 200 means double height. Accepts only non-negative values.
@@ -39,12 +36,11 @@
 ; bar_width = 1
 ; bar_spacing = 0
 
-# ceter bars in terminal, if there is space.
+# center bars in terminal, if there is space.
 ; center_align = 1
 
 # max height of bars in terminal, in percent of terminal height.
 ; max_height = 100
-
 
 # Lower and higher cutoff frequencies for lowest and highest bars
 # the bandwidth of the visualizer.
@@ -53,7 +49,6 @@
 ; lower_cutoff_freq = 50
 ; higher_cutoff_freq = 10000
 
-
 # Seconds with no input before cava goes to sleep mode. Cava will not perform FFT or drawing and
 # only check for input once per second. Cava will wake up once input is detected. 0 = disable.
 ; sleep_timer = 0
@@ -61,12 +56,12 @@
 
 [input]
 
-# Audio capturing method. Possible methods are: 'fifo', 'portaudio', 'pipewire', 'alsa', 'pulse', 'sndio', 'oss', 'jack' or 'shmem'
-# Defaults to 'oss', 'pipewire', 'sndio', 'jack', 'pulse', 'alsa', 'portaudio' or 'fifo', in that order, dependent on what support cava was built with.
-# On Mac it defaults to 'portaudio' or 'fifo'
-# On windows this is automatic and no input settings are needed.
+# Audio capturing method. Possible methods are: 'fifo', 'portaudio', 'coreaudio', 'pipewire', 'alsa', 'pulse', 'sndio', 'oss', 'jack' or 'shmem'
+# Defaults to 'oss', 'pipewire', 'sndio', 'jack', 'pulse', 'coreaudio', 'alsa', 'portaudio' or 'fifo', in that order, dependent on what support cava was built with.
+# On Mac it defaults to 'coreaudio', 'portaudio' or 'fifo'
+# On Windows this is automatic and no input settings are needed.
 #
-# All input methods uses the same config variable 'source'
+# Each input method uses the same config variable 'source'
 # to define where it should get the audio.
 #
 # For pulseaudio and pipewire 'source' will be the source. Default: 'auto', which uses the monitor source of the default sink
@@ -78,6 +73,14 @@
 # For alsa 'source' will be the capture device.
 # For fifo 'source' will be the path to fifo-file.
 # For shmem 'source' will be /squeezelite-AA:BB:CC:DD:EE:FF where 'AA:BB:CC:DD:EE:FF' will be squeezelite's MAC address
+#
+# For coreaudio 'source' can be:
+#   'auto' (default output device), 'auto_input' (default input device), 'list',
+#   a 1-based device index from 'list', or an exact device name.
+#
+# On macOS 14.2+ with tap support compiled in, coreaudio can capture system output
+# without a loopback interface using:
+#   'tap' (stereo system mix) or 'tap_mono' (mono system mix)
 #
 # For sndio 'source' will be a raw recording audio descriptor or a monitoring sub-device, e.g. 'rsnd/2' or 'snd/1'. Default: 'default'.
 # README.md contains further information on how to setup CAVA for sndio.
@@ -104,6 +107,9 @@
 ; source = /squeezelite-AA:BB:CC:DD:EE:FF
 
 ; method = portaudio
+; source = auto
+
+; method = coreaudio
 ; source = auto
 
 ; method = sndio
@@ -156,7 +162,7 @@
 # 'raw' defaults to 1024 bars stereo (512 bars mono), which can be adjusted in the 'bars' option above.
 #
 # 'noritake' outputs a bitmap in the format expected by a Noritake VFD display
-#  in graphic mode. It only support the 3000 series graphical VFDs for now.
+# in graphic mode. It only support the 3000 series graphical VFDs for now.
 #
 # 'sdl' uses the Simple DirectMedia Layer to render in a graphical context.
 # 'sdl_glsl' uses SDL to create an OpenGL context. Write your own shaders or
@@ -165,7 +171,7 @@
 
 # Orientation of the visualization. Can be 'bottom', 'top', 'left', 'right' or
 # 'horizontal'. Default is 'bottom'. 'left and 'right' are only supported on sdl
-# and ncruses output. 'horizontal' (bars go up and down from center) is only supported
+# and ncurses output. 'horizontal' (bars go up and down from center) is only supported
 # on noncurses output.
 # Note: many fonts have weird or missing glyphs for characters used in orientations
 # other than 'bottom', which can make output not look right.
@@ -200,7 +206,7 @@
 # Ascii max value. In 'ascii' mode range will run from 0 to value specified here
 ; ascii_max_range = 1000
 
-# Ascii delimiters. In ascii format each bar and frame is separated by a delimiters.
+# Ascii delimiters. In ascii format each bar and frame is separated by a delimiter.
 # Use decimal value in ascii table (i.e. 59 = ';' and 10 = '\n' (line feed)).
 ; bar_delimiter = 59
 ; frame_delimiter = 10
@@ -224,12 +230,36 @@
 
 # Shaders for sdl_glsl, located in $HOME/.config/cava/shaders
 ; vertex_shader = pass_through.vert
+
+# Default spectrum shader
+# default value: bar_spectrum.frag
 ; fragment_shader = bar_spectrum.frag
 
-; for glsl output mode, keep rendering even if no audio
+# other styles shaders
+; fragment_shader = eye_of_phi.frag
+; fragment_shader = northern_lights.frag
+; fragment_shader = spectrogram.frag
+; fragment_shader = winamp_line_style_spectrum.frag
+
+# Orion shaders (use with: method = sdl_glsl)
+# Static Orion
+; fragment_shader = orion_circle.frag
+# Rotating Orion
+; fragment_shader = orion_circle_rotate.frag
+# Orion saturn subring
+; fragment_shader = orion_saturn_subring.frag
+# Orion saturn core
+; fragment_shader = orion_saturn_core.frag
+
+# For glsl output mode, keep rendering even if no audio. 1 = on, 0 = off. Default: 0
+# Enable for animated shaders so time-based effects keep updating.
 ; continuous_rendering = 0
 
-# disable console blank (screen saver) in tty
+# SDL_GLSL only: gain applied to bar amplitudes before sending to shaders, in percent. Default: 100
+# 0 = mute, 100 = unchanged, >100 = amplify (shader input is clamped to the [0..1] range).
+; sdl_glsl_gain = 100
+
+# disable console blank (screen saver) in tty. 1 = on, 0 = off. Default: 0
 # (Not supported on FreeBSD)
 ; disable_blanking = 0
 
@@ -239,10 +269,11 @@
 # show waveform instead of frequency spectrum, 1 = on, 0 = off
 ; waveform = 0
 
+
 [color]
 
 # Colors can be one of seven predefined: black, blue, cyan, green, magenta, red, white, yellow.
-# Or defined by hex code '#xxxxxx' (hex code must be within ''). User defined colors requires
+# Or defined by hex code '#xxxxxx' (hex code must be within ''). User defined colors require
 # a terminal that can change color definitions such as Gnome-terminal or rxvt.
 # default is to keep current terminal color
 ; background = default
@@ -252,10 +283,9 @@
 ; background = '#111111'
 ; foreground = '#33ffff'
 
-
 # Gradient mode, only hex defined colors are supported,
 # background must also be defined in hex or remain commented out. 1 = on, 0 = off.
-# You can define as many as 8 different colors. They range from bottom to top of screen
+# You can define as many as 8 different colors. They range from bottom to top of the screen
 ; gradient = 0
 ; gradient_color_1 = '#59cc33'
 ; gradient_color_2 = '#80cc33'
@@ -265,7 +295,6 @@
 ; gradient_color_6 = '#cc8033'
 ; gradient_color_7 = '#cc5933'
 ; gradient_color_8 = '#cc3333'
-
 
 # Horizontal is only supported on noncurses output.
 # Only one color will be calculated per bar.
@@ -279,11 +308,10 @@
 ; horizontal_gradient_color_7 = '#5e62a9'
 ; horizontal_gradient_color_8 = '#434279'
 
-
-# If both vertical and horizontal gradient is enabled, vertical will be blended in this direction.
+# If both vertical and horizontal gradients are enabled, the vertical one will be blended in this direction.
 # Can be 'up', 'down', 'left' or 'right'. 'up' means the vertical gradient will be blended in from
-# bottom to top. I.e. the bottom will be only the horizontal
-# and top will be only the color of the vertical gradient.
+# bottom to top. I.e. the bottom will only be the horizontal
+# and top will only be the vertical color of the gradient.
 ; blend_direction = 'up'
 
 # use theme file instead of defining colors in this file
@@ -293,24 +321,9 @@
 
 [smoothing]
 
-# Percentage value for integral smoothing. Takes values from 0 - 100.
-# Higher values means smoother, but less precise. 0 to disable.
-# DEPRECATED as of 0.8.0, use noise_reduction instead
-; integral = 77
-
 # Disables or enables the so-called "Monstercat smoothing" with or without "waves". Set to 0 to disable.
 ; monstercat = 0
 ; waves = 0
-
-# Set gravity percentage for "drop off". Higher values means bars will drop faster.
-# Accepts only non-negative values. 50 means half gravity, 200 means double. Set to 0 to disable "drop off".
-# DEPRECATED as of 0.8.0, use noise_reduction instead
-; gravity = 100
-
-
-# In bar height, bars that would have been lower that this will not be drawn.
-# DEPRECATED as of 0.8.0
-; ignore = 0
 
 # Noise reduction, int 0 - 100. default 77
 # the raw visualization is very noisy, this factor adjusts the integral and gravity filters to keep the signal smooth
@@ -320,7 +333,7 @@
 
 [eq]
 
-# This one is tricky. You can have as much keys as you want.
+# This one is tricky. You can have as many keys as you want.
 # Remember to uncomment more than one key! More keys = more precision.
 # Look at readme.md on github for further explanations and examples.
 ; 1 = 1 # bass

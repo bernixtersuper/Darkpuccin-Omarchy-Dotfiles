@@ -9,7 +9,11 @@
           "id": "omarchy.system-update"
         },
         {
-          "id": "omarchy.indicators"
+          "id": "omarchy.indicators",
+          "items": ["PasswordlessSudo", "ScreenRecording", "RemoteSession", "Reminder", "Dnd", "StayAwake"]
+        },
+        {
+          "id": "berni.nightlight-gauge"
         },
         {
           "format": "(ddd) MM月dd日 HH:mm:ss",

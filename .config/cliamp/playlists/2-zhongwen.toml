@@ -14,6 +14,7 @@ title = "Jumping Machine (跳楼机) [TOC78RUj8pg]"
 [[track]]
 path = "/home/berni/Music/中文/LOVE (feat. 鄭潤澤) [h8LIIZz1kWM].mp3"
 title = "LOVE (feat. 鄭潤澤) [h8LIIZz1kWM]"
+duration_secs = 208
 
 [[track]]
 path = "/home/berni/Music/中文/Let the rain come down (Affectionate Version) [CvBdVrLrLa8].mp3"
@@ -22,6 +23,7 @@ title = "Let the rain come down (Affectionate Version) [CvBdVrLrLa8]"
 [[track]]
 path = "/home/berni/Music/中文/Love Can...... [ldF57rxmRpQ].mp3"
 title = "Love Can...... [ldF57rxmRpQ]"
+duration_secs = 261
 
 [[track]]
 path = "/home/berni/Music/中文/Marry Me Today [6UlVEo7d6HA].mp3"
@@ -83,6 +85,7 @@ artist = "任夏"
 [[track]]
 path = "/home/berni/Music/中文/你就不要想起我 [CrSCaW-k-fs].mp3"
 title = "你就不要想起我 [CrSCaW-k-fs]"
+duration_secs = 280
 
 [[track]]
 path = "/home/berni/Music/中文/你的影子 [hVcmVl9b2Xg].mp3"
@@ -289,6 +292,7 @@ title = "烂片剧情 [n49Zi0fIGlA]"
 [[track]]
 path = "/home/berni/Music/中文/爱随你飞而我追 [dbn3QOPXtsk].mp3"
 title = "爱随你飞而我追 [dbn3QOPXtsk]"
+duration_secs = 244
 
 [[track]]
 path = "/home/berni/Music/中文/真的没喝多 [__hmZ1KxcMs].mp3"

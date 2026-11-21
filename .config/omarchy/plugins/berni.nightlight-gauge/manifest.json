@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "berni.nightlight-gauge",
+  "name": "Night Light Gauge",
+  "version": "1.0.0",
+  "author": "berni",
+  "description": "Icon-only Night Light warmth gauge with a slider panel",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Night Light Gauge",
+    "description": "Icon-only Night Light warmth gauge with a slider panel",
+    "category": "Display",
+    "allowMultiple": false
+  }
+}

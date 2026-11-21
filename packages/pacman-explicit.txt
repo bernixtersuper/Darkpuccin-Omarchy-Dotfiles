@@ -1,5 +1,6 @@
 aether
 alsa-utils
+asciiquarium
 asdcontrol
 base
 base-devel
@@ -12,11 +13,13 @@ bolt
 brightnessctl
 btop
 btrfs-progs
+cava
 chromium
 clang
 claude-desktop
 cliamp
 clock-tui
+cmatrix
 cups
 cups-filters
 cups-pk-helper
