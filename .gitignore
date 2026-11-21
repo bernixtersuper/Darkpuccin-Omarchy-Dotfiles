@@ -73,6 +73,12 @@
 .claude/plugins/marketplaces/
 .claude/plugins/repos/
 
+# Anthropic's own first-party example skills (built-in-browser, computer-use,
+# docs, pdf, pptx, xlsx, docx, etc.) -- auto-downloaded and kept current by
+# Claude Code itself under a machine-local UUID bucket dir. Not Berni's
+# skills, regenerates automatically, not worth tracking.
+.claude/skills/synced/
+
 # cliamp: runtime state, not config
 .config/cliamp/cliamp.sock.pid
 .config/cliamp/resume.json
